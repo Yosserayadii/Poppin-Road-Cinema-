@@ -22,7 +22,6 @@ class _SplashState extends State<Splash> {
     setState(() {
       imagePosition = 0.5; 
     });
-
    
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
