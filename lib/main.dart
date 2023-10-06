@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Routes/Route.dart';
-import 'package:poppinroadcimema/Screens/splash.dart';
-
+import 'package:poppinroadcimema/reusable_widgets/Styles.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-  
+    final isDarkTheme = true; 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Poppin Road Cinema',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      initialRoute: '/', 
-     routes: routes,
+      theme: Styles.themeData(isDarkTheme, context), 
+      initialRoute: '/',
+      routes: routes,
     );
   }
 }
-
-
