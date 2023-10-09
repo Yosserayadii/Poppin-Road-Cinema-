@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
 import 'package:poppinroadcimema/Constants.dart';
-import 'package:poppinroadcimema/MapMarker.dart';
+import 'package:poppinroadcimema/Models/MapMarker.dart';
 
 class Map extends StatefulWidget {
   const Map({super.key});
@@ -14,6 +16,39 @@ class Map extends StatefulWidget {
 class _MapState extends State<Map> {
   final PageController pageController = PageController();
   int selectedIndex = 0;
+  late LatLng currentLocation;
+
+  late MapController mapController;
+
+  @override
+  void initState() {
+    super.initState();
+    mapController = MapController();
+    _updateCurrentLocation();
+  }
+
+  Future<void> _updateCurrentLocation() async {
+    LocationData? locationData;
+    var location = Location();
+
+    try {
+      locationData = await location.getLocation();
+    } catch (e) {
+      print("Error getting location: $e");
+      // Handle error, show a message to the user, etc.
+      return;
+    }
+
+    setState(() {
+      currentLocation =
+          LatLng(locationData!.latitude!, locationData.longitude!);
+    });
+
+    // Check if mapController is not null before animating the camera
+    if (mapController != null) {
+      mapController.move(currentLocation, 13.0);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +60,7 @@ class _MapState extends State<Map> {
               minZoom: 5,
               maxZoom: 18,
               zoom: 13,
-              center: AppConstants.myLocation,
+              center: currentLocation,
             ),
             children: [
               TileLayer(
@@ -38,6 +73,16 @@ class _MapState extends State<Map> {
               ),
               MarkerLayer(
                 markers: [
+                  // Marker for the current location
+                  Marker(
+                    height: 50,
+                    width: 50,
+                    point: currentLocation,
+                    builder: (_) {
+                      return SvgPicture.asset("current_location_marker.svg");
+                    },
+                  ),
+                  // Markers for other locations
                   for (int i = 0; i < mapMarkers.length; i++)
                     Marker(
                         height: 40,
@@ -90,7 +135,6 @@ class _MapState extends State<Map> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    color: const Color.fromARGB(255, 30, 29, 29),
                     child: Row(
                       children: [
                         const SizedBox(width: 10),

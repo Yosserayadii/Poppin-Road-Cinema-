@@ -19,33 +19,26 @@ class MapMarker {
 final mapMarkers = [
   MapMarker(
       image: 'assets/logo.png',
-      title: 'Alexander The Great Restaurant',
+      title: 'Cinéma Pathé azur cityt',
       address: '8 Plender St, London NW1 0JT, United Kingdom',
-      location: LatLng(51.5382123, -0.1882464),
+      location: LatLng(36.725853, 10.2549809),
       rating: 4),
   MapMarker(
       image: 'assets/logo.png',
-      title: 'Mestizo Mexican Restaurant',
+      title: 'Cinéma Pathé Tunis City',
       address: '103 Hampstead Rd, London NW1 3EL, United Kingdom',
-      location: LatLng(51.5090229, -0.2886548),
+      location: LatLng(36.8983082, 10.1222151),
       rating: 5),
   MapMarker(
       image: 'assets/logo.png',
-      title: 'The Shed',
+      title: 'Cinéma Pathé Mall of Sousse',
       address: '122 Palace Gardens Terrace, London W8 4RT, United Kingdom',
-      location: LatLng(51.5090215, -0.1959988),
+      location: LatLng(35.901849, 10.5410693),
       rating: 2),
   MapMarker(
       image: 'assets/logo.png',
-      title: 'Gaucho Tower Bridge',
+      title: 'ABC Cinéma Tunis',
       address: '2 More London Riverside, London SE1 2AP, United Kingdom',
-      location: LatLng(51.5054563, -0.0798412),
+      location: LatLng(36.7989543, 10.1800283),
       rating: 3),
-  MapMarker(
-    image: 'assets/logo.png',
-    title: 'Bill\'s Holborn Restaurant',
-    address: '42 Kingsway, London WC2B 6EY, United Kingdom',
-    location: LatLng(51.5077676, -0.2208447),
-    rating: 4,
-  ),
 ];
