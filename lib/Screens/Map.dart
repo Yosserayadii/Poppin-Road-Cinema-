@@ -45,9 +45,8 @@ class _MapState extends State<Map> {
     });
 
     // Check if mapController is not null before animating the camera
-    if (mapController != null) {
-      mapController.move(currentLocation, 13.0);
-    }
+
+    mapController.move(currentLocation, 13.0);
   }
 
   @override
