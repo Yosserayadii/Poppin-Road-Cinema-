@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Screens/body.dart';
 import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
+import 'package:poppinroadcimema/Screens/Map.dart';
+import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class homescreen extends StatefulWidget {
   const homescreen({super.key});
@@ -13,19 +16,13 @@ class _homescreenState extends State<homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Container(
-          child: CustomButton(
-            title: 'My Button',
-            color: Color(0xFFF70113), 
-            onPressed: () {
-             
-            },
-
-          ),
-        ),
-      ),
-     bottomNavigationBar: Bottom_navigation_bar(),
+   
+   appBar: AppBar(
+    backgroundColor: CustomColors.secondaryColor,
+    elevation: 0,
+    leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu)),
+   ),
+   body: body()
     );
   }
 }
