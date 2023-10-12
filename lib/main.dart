@@ -3,11 +3,11 @@ import 'package:poppinroadcimema/Routes/Route.dart';
 import 'package:poppinroadcimema/reusable_widgets/Styles.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
