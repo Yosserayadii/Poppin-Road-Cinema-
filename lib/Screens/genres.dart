@@ -43,16 +43,21 @@ class _GenreState extends State<Genre> {
                             height: 25),
                       ),
                     ),
-                    Text('Comedy' , 
-                     style: TextStyle(
-          color: Color.fromARGB(255, 187, 187, 187).withOpacity(0.5), 
-          fontWeight: FontWeight.bold
-          // Add other text styles like fontSize, fontWeight, etc. as needed
-        ),)
+                    Text(
+                      'Comedy',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 187, 187, 187)
+                              .withOpacity(0.5),
+                          fontWeight: FontWeight.bold
+                          // Add other text styles like fontSize, fontWeight, etc. as needed
+                          ),
+                    )
                   ],
                 ),
               ),
-               SizedBox(width: 10,),
+              SizedBox(
+                width: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -68,20 +73,26 @@ class _GenreState extends State<Genre> {
                       ),
                       child: Center(
                         child: Image.asset('assets/love.png',
-                            width: 25, // Adjust the width of the image as needed
+                            width:
+                                25, // Adjust the width of the image as needed
                             height: 25),
                       ),
                     ),
-                    Text('Romance' , 
-                     style: TextStyle(
-          color: Color.fromARGB(255, 187, 187, 187).withOpacity(0.5), 
-          fontWeight: FontWeight.bold
-          // Add other text styles like fontSize, fontWeight, etc. as needed
-        ),)
+                    Text(
+                      'Romance',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 187, 187, 187)
+                              .withOpacity(0.5),
+                          fontWeight: FontWeight.bold
+                          // Add other text styles like fontSize, fontWeight, etc. as needed
+                          ),
+                    )
                   ],
                 ),
               ),
-              SizedBox(width: 10,),
+              SizedBox(
+                width: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -95,21 +106,26 @@ class _GenreState extends State<Genre> {
                       ),
                       child: Center(
                         child: Image.asset('assets/bew.png',
-                            width: 25, // Adjust the width of the image as needed
+                            width:
+                                25, // Adjust the width of the image as needed
                             height: 25),
                       ),
                     ),
-                    Text('Horror' , 
-                    style: TextStyle(
-          color: Color.fromARGB(255, 187, 187, 187).withOpacity(0.5), 
-          fontWeight: FontWeight.bold
-          // Add other text styles like fontSize, fontWeight, etc. as needed
-        ),
+                    Text(
+                      'Horror',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 187, 187, 187)
+                              .withOpacity(0.5),
+                          fontWeight: FontWeight.bold
+                          // Add other text styles like fontSize, fontWeight, etc. as needed
+                          ),
                     )
                   ],
                 ),
               ),
-              SizedBox(width: 10,),
+              SizedBox(
+                width: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -123,16 +139,19 @@ class _GenreState extends State<Genre> {
                       ),
                       child: Center(
                         child: Image.asset('assets/tongue.png',
-                            width: 25, // Adjust the width of the image as needed
+                            width:
+                                25, // Adjust the width of the image as needed
                             height: 25),
                       ),
                     ),
-                    Text('Drama' , 
-                     style: TextStyle(
-          color: Color.fromARGB(255, 187, 187, 187).withOpacity(0.5), 
-          fontWeight: FontWeight.bold
-          // Add other text styles like fontSize, fontWeight, etc. as needed
-        ),
+                    Text(
+                      'Drama',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 187, 187, 187)
+                              .withOpacity(0.5),
+                          fontWeight: FontWeight.bold
+                          // Add other text styles like fontSize, fontWeight, etc. as needed
+                          ),
                     )
                   ],
                 ),
