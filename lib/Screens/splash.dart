@@ -72,7 +72,7 @@ class _SplashState extends State<Splash> {
               alignment: Alignment(0.0, -imagePosition),
               child: Image.asset(
                 'assets/logo.png', 
-                fit: BoxFit.cover,
+                fit: BoxFit.cover,  
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2,
               ),

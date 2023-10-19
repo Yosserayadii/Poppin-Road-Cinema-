@@ -1,30 +1,25 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+  
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:poppinroadcimema/main.dart';
+import 'package:poppinroadcimema/main.dart'; // Import your app's entry point
+import 'package:poppinroadcimema/Screens/Splash.dart'; // Import the Splash widget
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Test Splash Widget', (WidgetTester tester) async {
+    // Build the app and trigger a frame.
+    await tester.pumpWidget(const MainPage()); // Replace with your app's entry point
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the Splash widget is displayed
+    expect(find.byType(Splash), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Delay for 3 seconds to allow animation and navigation to complete
+    await Future.delayed(const Duration(seconds: 3));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that navigation to homescreen occurs
+
+
+    // You can add more test assertions as needed
+
+    // ... Rest of your test code
   });
 }

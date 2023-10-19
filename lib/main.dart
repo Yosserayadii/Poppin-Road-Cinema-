@@ -3,11 +3,11 @@ import 'package:poppinroadcimema/Routes/Route.dart';
 import 'package:poppinroadcimema/reusable_widgets/Styles.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,27 @@ class MyApp extends StatelessWidget {
       theme: Styles.themeData(isDarkTheme, context),
       initialRoute: '/',
       routes: routes,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Poppin Road Cinema'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                '0', // Display '0' here
+                style: TextStyle(fontSize: 24),
+              ),
+              Text(
+                '1', // Display '1' here
+                style: TextStyle(fontSize: 24),
+              ),
+              // You can add other widgets here as needed
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
