@@ -332,7 +332,7 @@ class _HomeState extends State<HomeCinema> {
               padding: const EdgeInsets.all(20),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width / 3,
+                height: 120,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   gradient: SweepGradient(
@@ -408,16 +408,15 @@ class _HomeState extends State<HomeCinema> {
             ),
             GridView.count(shrinkWrap: true, crossAxisCount: 2, children: [
               Container(
-                
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24.0),
-                    
                     image: DecorationImage(
-                       colorFilter: new ColorFilter.mode(Color.fromARGB(158, 15, 30, 91).withOpacity(0.7), BlendMode.dstATop),
-     
-            image: AssetImage("assets/barbi.jpg"),
-            fit: BoxFit.cover,
-          ),
+                      colorFilter: new ColorFilter.mode(
+                          Color.fromARGB(158, 15, 30, 91).withOpacity(0.73),
+                          BlendMode.dstATop),
+                      image: AssetImage("assets/barbi.jpg"),
+                      fit: BoxFit.cover,
+                    ),
                     boxShadow: [
                       BoxShadow(
                           color: const Color.fromARGB(197, 50, 50, 68)
@@ -430,7 +429,21 @@ class _HomeState extends State<HomeCinema> {
                     ]),
                 padding: EdgeInsets.all(30),
                 margin: EdgeInsets.all(20),
-                child: Text("nnnj"),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        width: 40 ,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: CustomColors.fourthColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
               Container(
                 child: Text("ok"),
