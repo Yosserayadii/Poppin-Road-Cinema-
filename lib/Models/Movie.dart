@@ -25,10 +25,10 @@ class Movie {
 List<Movie> movies = [
   Movie(
     id: 1,
-    title: "Bloodshot",
+    title: "Ford V Ferrari",
     year: 2020,
     poster: "assets/ford.jpg",
-    backdrop: "assets/star.png",
+    backdrop: "assets/backdrop_2.jpg",
     numOfRatings: 150212,
     rating: 7.3,
     criticsReview: 50,
@@ -59,10 +59,10 @@ List<Movie> movies = [
   ),
   Movie(
     id: 2,
-    title: "Ford v Ferrari",
+    title: "On Ward",
     year: 2019,
     poster: "assets/onward.jpeg",
-    backdrop: "assets/star.png",
+    backdrop: "assets/backdrop_3.jpg",
     numOfRatings: 150212,
     rating: 8.2,
     criticsReview: 50,
@@ -93,10 +93,10 @@ List<Movie> movies = [
   ),
   Movie(
     id: 3, // Changed ID to 3
-    title: "Onward",
+    title: "Me Before You",
     year: 2020,
     poster: "assets/me.jpg",
-    backdrop: "assets/star.png",
+    backdrop: "assets/backdrop_1.png",
     numOfRatings: 150212,
     rating: 7.6,
     criticsReview: 50,
