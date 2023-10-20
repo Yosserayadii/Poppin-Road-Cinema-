@@ -15,10 +15,6 @@ void main() {
     // Delay for 3 seconds to allow animation and navigation to complete
     await Future.delayed(const Duration(seconds: 3));
 
-    // Verify that navigation to homescreen occurs
-
-
-    // You can add more test assertions as needed
 
     // ... Rest of your test code
   });
