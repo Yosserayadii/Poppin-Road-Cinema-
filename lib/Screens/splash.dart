@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poppinroadcimema/Screens/home_cinema.dart';
-import 'package:poppinroadcimema/Screens/home_page.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/home_page.dart';
+import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
+import 'package:poppinroadcimema/Screens/Map.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -19,21 +20,22 @@ class _SplashState extends State<Splash> {
   }
 
   void animateImages() async {
-    await Future.delayed(Duration(seconds: 1)); 
+    await Future.delayed(Duration(seconds: 1));
     setState(() {
-      imagePosition = 0.5; 
+      imagePosition = 0.5;
     });
-   
+
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => HomeCinema(), 
+          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;
             const curve = Curves.easeInOut;
 
-            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
             var offsetAnimation = animation.drive(tween);
 
             return SlideTransition(
@@ -50,29 +52,28 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFF171B30), 
+        color: Color(0xFF171B30),
         child: Stack(
           fit: StackFit.expand,
           children: [
             AnimatedContainer(
-              duration: Duration(seconds: 1), 
-              curve: Curves.easeInOut, 
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOut,
               alignment: Alignment(0.0, imagePosition),
               child: Image.asset(
-                'assets/logoo.png', 
+                'assets/logoo.png',
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2,
               ),
             ),
-        
             AnimatedContainer(
-              duration: Duration(seconds: 1), 
+              duration: Duration(seconds: 1),
               curve: Curves.easeInOut,
               alignment: Alignment(0.0, -imagePosition),
               child: Image.asset(
-                'assets/logo.png', 
-                fit: BoxFit.cover,  
+                'assets/logo.png',
+                fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2,
               ),

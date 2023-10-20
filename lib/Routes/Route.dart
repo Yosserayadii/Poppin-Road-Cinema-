@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/home_page.dart';
 import 'package:poppinroadcimema/Screens/Splash.dart';
-import 'package:poppinroadcimema/Screens/home_page.dart';
 
 
-import '../Screens/home_cinema.dart';
+import '../Screens/HomePage/home_cinema.dart';
 
 final Map<String, WidgetBuilder> routes = {
   '/': (context) => Splash(),

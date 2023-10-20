@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poppinroadcimema/Screens/body.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/body.dart';
 import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
 import 'package:poppinroadcimema/Screens/Map.dart';
