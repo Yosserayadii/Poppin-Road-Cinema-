@@ -29,8 +29,9 @@ class Styles {
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light()),
       appBarTheme: const AppBarTheme(
-        elevation: 0.0,
-        color: Color(0xFF171B30),
+        elevation: 1.0,
+        color: Color.fromARGB(255, 17, 32, 63),
+        titleTextStyle: TextStyle(color: Color.fromARGB(225, 241, 245, 251)),
       ),
       // You can define more specific theme properties using the colors you provided
     );

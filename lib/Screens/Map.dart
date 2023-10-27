@@ -6,14 +6,14 @@ import 'package:location/location.dart';
 import 'package:poppinroadcimema/Constants.dart';
 import 'package:poppinroadcimema/Models/MapMarker.dart';
 
-class Map extends StatefulWidget {
-  const Map({super.key});
+class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
 
   @override
-  State<Map> createState() => _MapState();
+  State<MapScreen> createState() => _MapScreenState();
 }
 
-class _MapState extends State<Map> {
+class _MapScreenState extends State<MapScreen> {
   final PageController pageController = PageController();
   int selectedIndex = 0;
   late LatLng currentLocation;
@@ -52,6 +52,13 @@ class _MapState extends State<Map> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Map "),
+        titleSpacing: 00.0,
+        centerTitle: true,
+        toolbarHeight: 60.2,
+        toolbarOpacity: 0.8,
+      ),
       body: Stack(
         children: [
           FlutterMap(
