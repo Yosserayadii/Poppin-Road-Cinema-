@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/home_page.dart';
-import 'package:poppinroadcimema/Screens/Splash.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
+import 'package:poppinroadcimema/animations/splash.dart';
+
 
 
 import '../Screens/HomePage/home_cinema.dart';

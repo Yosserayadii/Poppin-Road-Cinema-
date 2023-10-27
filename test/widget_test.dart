@@ -1,8 +1,9 @@
   
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:poppinroadcimema/animations/splash.dart';
 import 'package:poppinroadcimema/main.dart'; // Import your app's entry point
-import 'package:poppinroadcimema/Screens/Splash.dart'; // Import the Splash widget
+// Import the Splash widget
 
 void main() {
   testWidgets('Test Splash Widget', (WidgetTester tester) async {

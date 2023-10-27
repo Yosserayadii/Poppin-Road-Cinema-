@@ -8,6 +8,7 @@ class CustomColors {
   static const Color thirdColor = Color.fromARGB(255, 176, 179, 185);
   static const Color fourthColor = Color.fromARGB(255, 228, 228, 228);
   static const Color fifthColor = Color.fromARGB(255, 247, 1, 17);
+ 
 
   
 }
