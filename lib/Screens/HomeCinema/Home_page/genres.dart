@@ -12,11 +12,16 @@ class _GenreState extends State<Genre> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Row(
-            children: [Text('Category')],
+            children: [Text('Category' , 
+          style: TextStyle(
+            color: const Color.fromARGB(123, 216, 220, 238)
+          )
+            
+            )],
           ),
           SizedBox(
             height: 20,
@@ -31,8 +36,7 @@ class _GenreState extends State<Genre> {
                       width: 50, // Adjust the size of the container as needed
                       height: 50,
                       decoration: BoxDecoration(
-                        color: CustomColors
-                            .secondaryColor, // Adjust the background color as needed
+                        color: const Color.fromRGBO(49, 54, 77, 0.486), // Adjust the background color as needed
                         borderRadius: BorderRadius.circular(
                             10), // Adjust the border radius as needed
                       ),

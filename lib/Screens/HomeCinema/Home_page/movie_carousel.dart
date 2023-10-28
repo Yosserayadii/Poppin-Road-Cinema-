@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
 import 'dart:math' as math;
 
-import 'package:poppinroadcimema/Screens/moviecard.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/moviecard.dart';
 class MovieCaroussel extends StatefulWidget {
   const MovieCaroussel({super.key});
 
@@ -57,7 +57,7 @@ class _MovieCarousselState extends State<MovieCaroussel> {
     if(_pageController.position.haveDimensions){
       final page = _pageController.page ?? 0.0; // Use 0.0 as the default value if it's null
       value = index - page;
-      value = (value * 0.10).clamp(-1, 1) ;
+      value = (value * 0.15).clamp(-1, 1) ;
     }
   return AnimatedOpacity(
     duration: Duration(milliseconds: 350),
