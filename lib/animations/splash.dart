@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/home_page.dart';
-import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
-import 'package:poppinroadcimema/Screens/Map.dart';
 
+import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
+import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
+import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
 
@@ -28,16 +28,14 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => Spinning_wheel(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;
             const curve = Curves.easeInOut;
-
             var tween =
                 Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
             var offsetAnimation = animation.drive(tween);
-
             return SlideTransition(
               position: offsetAnimation,
               child: child,
@@ -54,7 +52,7 @@ class _SplashState extends State<Splash> {
       body: Container(
         color: Color(0xFF171B30),
         child: Stack(
-          fit: StackFit.expand,
+        
           children: [
             AnimatedContainer(
               duration: Duration(seconds: 1),
@@ -63,7 +61,7 @@ class _SplashState extends State<Splash> {
               child: Image.asset(
                 'assets/logoo.png',
                 fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width *0.8,
                 height: MediaQuery.of(context).size.height / 2,
               ),
             ),
@@ -74,7 +72,7 @@ class _SplashState extends State<Splash> {
               child: Image.asset(
                 'assets/logo.png',
                 fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width*0.5,
                 height: MediaQuery.of(context).size.height / 2,
               ),
             ),
@@ -84,3 +82,5 @@ class _SplashState extends State<Splash> {
     );
   }
 }
+
+
