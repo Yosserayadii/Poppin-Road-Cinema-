@@ -30,7 +30,7 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
     final lastSpinTime = prefs.getInt('lastSpinTime') ?? 0;
     final currentTime = DateTime.now().millisecondsSinceEpoch ~/ 1000;
     final elapsedTime = currentTime - lastSpinTime;
-    if (elapsedTime >= 24zz * 60 * 60) {
+    if (elapsedTime >= 24 * 60 * 60) {
       setState(() {
         canSpin = true;
         timeLeft = 0;
