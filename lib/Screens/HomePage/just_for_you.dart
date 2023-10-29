@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poppinroadcimema/Models/Movie.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/Category_list.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/genre_card.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/genres.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/movie_carousel.dart';
-import 'package:poppinroadcimema/Screens/moviecard.dart';
-import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:lottie/lottie.dart';
+
 
 class JustForYou extends StatelessWidget {
   const JustForYou({super.key});
@@ -51,13 +46,14 @@ class JustForYou extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
-                  /*    child: Lottie.asset(
+
+                    child: Lottie.asset(
                           'assets/promtion.json',
                           width: 50,
                           repeat: true,
                           fit: BoxFit.cover,
                           reverse: true,
-                        ),*/
+                        ),
                 ),
               ),
               const Expanded(

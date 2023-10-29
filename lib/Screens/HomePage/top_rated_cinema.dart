@@ -1,8 +1,5 @@
 import 'dart:async';
-//import 'dart:html';
-import 'package:animated_emoji/animated_emoji.dart';
 import 'package:flutter/material.dart';
-import "package:carousel_slider/carousel_slider.dart";
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';

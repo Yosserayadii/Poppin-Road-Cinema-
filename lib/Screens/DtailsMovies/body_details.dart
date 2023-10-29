@@ -3,6 +3,7 @@ import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/backdrop_rating.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+final Uri _url = Uri.parse('https://www.youtube.com/watch?v=x8DKg_fsacM');
 
 class body_details extends StatelessWidget {
   final Movie movie;
@@ -26,13 +27,13 @@ class body_details extends StatelessWidget {
               width: 64,
             ),
             InkWell(
-              onTap: () async {
-                const url = 'https://www.youtube.com/watch?v=x8DKg_fsacM';
-                final uri = Uri.parse(url);
-                if (await canLaunchUrl(uri)) {
-                  launchUrl(uri);
-                }
-              },
+        
+              onTap:
+  _launchUrl,
+
+  
+  
+              
               child: Material(
                 elevation: 5, // Add a shadow
                 color: Colors.transparent, // Transparent material
@@ -56,5 +57,10 @@ class body_details extends StatelessWidget {
         ),
       )
     ]);
+  }
+}
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }

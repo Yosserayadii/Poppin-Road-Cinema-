@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/body_details.dart';
+import 'package:poppinroadcimema/Screens/DtailsMovies/body_details.dart';
 
 class details_Screen extends StatelessWidget {
   late  Movie movie;

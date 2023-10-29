@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
-import 'package:poppinroadcimema/Screens/details_screen.dart';
+import 'package:poppinroadcimema/Screens/DtailsMovies/details_screen.dart';
 
 class CardMovie extends StatelessWidget {
   final Movie movie;
