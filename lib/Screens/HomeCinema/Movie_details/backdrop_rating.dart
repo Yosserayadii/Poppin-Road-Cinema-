@@ -44,7 +44,7 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
               width: widget.size.width * 0.9,
               height: 100,
               decoration: BoxDecoration(
-                color: Color.fromARGB(244, 49, 54, 77),
+                 color: Color.fromARGB(172, 228, 228, 228),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(50),
                   topLeft: Radius.circular(50),
@@ -66,7 +66,7 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
                       Icon(
                         FeatherIcons.video,
                         size: 40,
-                        color: CustomColors.fifthColor,
+                        color: Color(0xFF049FB4),
                       ),
                       SizedBox(
                         height: 5,
