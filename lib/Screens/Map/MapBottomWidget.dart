@@ -18,7 +18,7 @@ class MapBottomWidget extends StatelessWidget {
       left: 0,
       right: 0,
       bottom: 2,
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.2, // Reduced the height
       child: PageView.builder(
         controller: pageController,
         onPageChanged: (value) {},
@@ -26,79 +26,53 @@ class MapBottomWidget extends StatelessWidget {
         itemBuilder: (_, index) {
           final item = Cinemas[index];
           return Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0), // Reduced the padding
             child: Card(
-              // elevation: 5,
+              elevation: 3, // Adjusted the elevation
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius:
+                    BorderRadius.circular(10), // Reduced the border radius
               ),
               child: Row(
                 children: [
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 15), // Reduced the width
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Expanded(
-                        //   child: ListView.builder(
-                        //     padding: EdgeInsets.zero,
-                        //     scrollDirection: Axis.horizontal,
-                        //     itemCount: item.rating,
-                        //     itemBuilder: (BuildContext context, int index) {
-                        //       return const Icon(
-                        //         Icons.star,
-                        //         color: Colors.orange,
-                        //       );
-                        //     },
-                        //   ),
-                        // ),
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    0, 10.0, 0, 8.0), // Add padding as needed
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      item.title ?? '',
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Icon(
-                                      FeatherIcons.star,
-                                      color: Colors.orange,
-                                      size: 17,
-                                    ),
-                                    Text(
-                                      item.rating.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.orange,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                        Row(
+                          children: [
+                            Text(
+                              item.title ?? '',
+                              style: const TextStyle(
+                                fontSize: 16, // Reduced the font size
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(height: 10),
-                              Expanded(
-                                child: Text(
-                                  item.address ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
-                                ),
+                            ),
+                            SizedBox(
+                              width: 5, // Reduced the width
+                            ),
+                            Icon(
+                              FeatherIcons.star,
+                              color: Colors.orange,
+                              size: 14, // Reduced the size
+                            ),
+                            Text(
+                              item.rating.toString(),
+                              style: const TextStyle(
+                                fontSize: 16, // Reduced the font size
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
                               ),
-                            ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 5), // Reduced the height
+                        Text(
+                          item.address ?? '',
+                          style: const TextStyle(
+                            fontSize: 12, // Reduced the font size
+                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -107,13 +81,17 @@ class MapBottomWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius:
+                          BorderRadius.circular(8), // Reduced the border radius
                       child: Image.asset(
                         item.image ?? '',
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
+                        height: 80, // Reduced the height
+                        width: 100, // Reduced the width
                       ),
                     ),
                   ),
+                  const SizedBox(width: 15),
                 ],
               ),
             ),
