@@ -81,11 +81,11 @@ class TopFilms extends StatelessWidget {
                         fontSize: 20, color: CustomColors.fourthColor),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
-      ])
+      ]),
     ]);
   }
 }
