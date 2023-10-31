@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Category_list.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/genre_card.dart';
@@ -51,13 +52,13 @@ class JustForYou extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
-                  /*    child: Lottie.asset(
-                          'assets/promtion.json',
-                          width: 50,
-                          repeat: true,
-                          fit: BoxFit.cover,
-                          reverse: true,
-                        ),*/
+                  child: Lottie.asset(
+                    'assets/promtion.json',
+                    width: 50,
+                    repeat: true,
+                    fit: BoxFit.cover,
+                    reverse: true,
+                  ),
                 ),
               ),
               const Expanded(

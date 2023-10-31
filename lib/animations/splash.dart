@@ -27,7 +27,7 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => HomeCinema(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;

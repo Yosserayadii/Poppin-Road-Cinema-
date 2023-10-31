@@ -4,16 +4,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:poppinroadcimema/Constants.dart';
-import 'package:poppinroadcimema/Models/MapMarker.dart';
+import 'package:poppinroadcimema/Models/Cinema.dart';
+import 'package:poppinroadcimema/Screens/Map/MapBottomWidget.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+class MapWidget extends StatefulWidget {
+  const MapWidget({Key? key}) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<MapWidget> createState() => _MapWidgetState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapWidgetState extends State<MapWidget> {
   final PageController pageController = PageController();
   int selectedIndex = 0;
   late LatLng currentLocation;
@@ -45,20 +46,12 @@ class _MapScreenState extends State<MapScreen> {
     });
 
     // Check if mapController is not null before animating the camera
-
     mapController.move(currentLocation, 13.0);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Map "),
-        titleSpacing: 00.0,
-        centerTitle: true,
-        toolbarHeight: 60.2,
-        toolbarOpacity: 0.8,
-      ),
       body: Stack(
         children: [
           FlutterMap(
@@ -89,128 +82,41 @@ class _MapScreenState extends State<MapScreen> {
                     },
                   ),
                   // Markers for other locations
-                  for (int i = 0; i < mapMarkers.length; i++)
+                  for (int i = 0; i < Cinemas.length; i++)
                     Marker(
-                        height: 40,
-                        width: 40,
-                        point:
-                            mapMarkers[i].location ?? AppConstants.myLocation,
-                        builder: (_) {
-                          return GestureDetector(
-                            onTap: () {
-                              pageController.animateToPage(
-                                i,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                              );
-                              selectedIndex = i;
-                              setState(() {});
-                            },
-                            child: AnimatedScale(
+                      height: 40,
+                      width: 40,
+                      point: Cinemas[i].location ?? AppConstants.myLocation,
+                      builder: (_) {
+                        return GestureDetector(
+                          onTap: () {
+                            pageController.animateToPage(
+                              i,
                               duration: const Duration(milliseconds: 500),
-                              scale: selectedIndex == i ? 1 : 0.7,
-                              child: AnimatedOpacity(
-                                duration: const Duration(milliseconds: 500),
-                                opacity: selectedIndex == i ? 1 : 0.5,
-                                child: SvgPicture.asset(
-                                  'assets/map_marker.svg',
-                                ),
+                              curve: Curves.easeInOut,
+                            );
+                            selectedIndex = i;
+                            setState(() {});
+                          },
+                          child: AnimatedScale(
+                            duration: const Duration(milliseconds: 500),
+                            scale: selectedIndex == i ? 1 : 0.7,
+                            child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 500),
+                              opacity: selectedIndex == i ? 1 : 0.5,
+                              child: SvgPicture.asset(
+                                'assets/map_marker.svg',
                               ),
                             ),
-                          );
-                        })
+                          ),
+                        );
+                      },
+                    ),
                 ],
               ),
             ],
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 2,
-            height: MediaQuery.of(context).size.height * 0.3,
-            child: PageView.builder(
-              controller: pageController, // Provide the controller
-              onPageChanged: (value) {},
-              itemCount: mapMarkers.length,
-              itemBuilder: (_, index) {
-                final item = mapMarkers[index];
-                return Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: item.rating,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return const Icon(
-                                      Icons.star,
-                                      color: Colors.orange,
-                                    );
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item.title ?? '',
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Expanded(
-                                      child: Text(
-                                        item.address ?? '',
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                item.image ?? '',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+          MapBottomWidget(pageController: pageController, Cinemas: Cinemas),
         ],
       ),
     );

@@ -43,7 +43,7 @@ class _BottomNavigationbarState extends State<BottomNavigationbar> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MapScreen(),
+                  builder: (context) => MapWidget(),
                 ),
               );
             },
