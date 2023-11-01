@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/genres.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/movie_interface.dart';
+import 'package:poppinroadcimema/Screens/HomePage/body.dart';
+import 'package:poppinroadcimema/Screens/Map/Map.dart';
+import 'package:poppinroadcimema/Screens/Map/MapBottomWidget.dart';
 import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
-import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class BottomNavigationbar extends StatefulWidget {
   const BottomNavigationbar({Key? key}) : super(key: key);
@@ -19,13 +19,20 @@ class _BottomNavigationbarState extends State<BottomNavigationbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          if (_selectedIndex == 0) Movie_interface(),
-          if (_selectedIndex == 1) Movie_interface(),
-          if (_selectedIndex == 2) MapScreen(),
-          if (_selectedIndex == 3) Movie_interface(),
-        ],
+      body: Builder(
+        builder: (BuildContext context) {
+          return SingleChildScrollView(
+            key: PageStorageKey<String>('myScrollKey'), // Add a key
+            child: Column(
+              children: <Widget>[
+                if (_selectedIndex == 0) Movie_interface(),
+                if (_selectedIndex == 1) BodyHomePage(),
+                if (_selectedIndex == 2) MapScreen(),
+                if (_selectedIndex == 3) Movie_interface(),
+              ],
+            ),
+          );
+        },
       ),
       bottomNavigationBar: GNav(
         backgroundColor: Color.fromARGB(69, 23, 27, 48),
