@@ -13,13 +13,21 @@ class Movie_interface extends StatefulWidget {
 class _Movie_interfaceState extends State<Movie_interface> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-     CategoryList(),
-    Genre(),
-    MovieCaroussel(),
+    return SingleChildScrollView(
+      
+     child: 
+     Container(
+       height: MediaQuery.of(context).size.height - 65,
+       child:  Column(
+        children: [
+       CategoryList(),
+      Genre(),
+      MovieCaroussel(),
+      
+        ],
+     )
     
-      ],
+      ),
     );
   }
 }
