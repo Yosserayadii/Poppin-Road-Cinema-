@@ -21,10 +21,7 @@ class _HomeState extends State<HomeCinema> {
                 padding: const EdgeInsets.only(right: 10.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MapScreen()),
-                    );
+                    _showMapPopUp(context);
                   },
                   child: const Icon(
                     Icons.location_on_rounded,
@@ -34,7 +31,10 @@ class _HomeState extends State<HomeCinema> {
                 padding: const EdgeInsets.only(right: 25.0),
                 child: GestureDetector(
                   onTap: () {
-                    _showMapPopUp(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MapScreen()),
+                    );
                   },
                   child: const Icon(Icons.search),
                 )),

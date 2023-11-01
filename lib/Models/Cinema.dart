@@ -31,7 +31,7 @@ final Cinemas = [
       rating: 5),
   Cinema(
       image: 'assets/pathe_sousse.png',
-      title: 'Cinéma Pathé Mall of Sousse',
+      title: ' Pathé Mall of Sousse',
       address: '122 Palace Gardens Terrace, London W8 4RT, United Kingdom',
       location: LatLng(35.901849, 10.5410693),
       rating: 2),
