@@ -39,7 +39,7 @@ class _CategoryListState extends State<CategoryList> {
             Text(categories[index],
                 style: Theme.of(context)
                     .textTheme
-                    .headline5!
+                    .headlineMedium!
                     .copyWith(fontWeight: FontWeight.w500 ,
                      color: index ==selectedcategory ?CustomColors.fifthColor: const Color.fromARGB(255, 187, 187, 187).withOpacity(0.2),
                     ) ,
