@@ -7,7 +7,6 @@ import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/genres.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/movie_carousel.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/moviecard.dart';
 import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
-import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:lottie/lottie.dart';
 

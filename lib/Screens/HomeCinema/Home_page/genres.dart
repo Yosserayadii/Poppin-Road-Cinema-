@@ -12,25 +12,9 @@ class _GenreState extends State<Genre> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 50),
-                child: Text(
-                  'Category',
-                  style: TextStyle(
-                    color: const Color.fromARGB(123, 216, 220, 238),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
           SingleChildScrollView(
             child: Row(
               children: [
@@ -39,18 +23,18 @@ class _GenreState extends State<Genre> {
                   child: Column(
                     children: [
                       Container(
-                        width: 50, // Adjust the size of the container as needed
+                        width: 50, 
                         height: 50,
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(49, 54, 77,
-                              0.486), // Adjust the background color as needed
+                              0.486), 
                           borderRadius: BorderRadius.circular(
-                              10), // Adjust the border radius as needed
+                              10), 
                         ),
                         child: Center(
                           child: Image.asset('assets/grinning.png',
                               width:
-                                  25, // Adjust the width of the image as needed
+                                  25, 
                               height: 25),
                         ),
                       ),
@@ -60,7 +44,7 @@ class _GenreState extends State<Genre> {
                             color: Color.fromARGB(255, 187, 187, 187)
                                 .withOpacity(0.5),
                             fontWeight: FontWeight.bold
-                            // Add other text styles like fontSize, fontWeight, etc. as needed
+                          
                             ),
                       )
                     ],
@@ -74,18 +58,18 @@ class _GenreState extends State<Genre> {
                   child: Column(
                     children: [
                       Container(
-                        width: 50, // Adjust the size of the container as needed
+                        width: 50, 
                         height: 50,
                         decoration: BoxDecoration(
                           color: CustomColors
-                              .secondaryColor, // Adjust the background color as needed
+                              .secondaryColor, 
                           borderRadius: BorderRadius.circular(
-                              10), // Adjust the border radius as needed
+                              10),
                         ),
                         child: Center(
                           child: Image.asset('assets/love.png',
                               width:
-                                  25, // Adjust the width of the image as needed
+                                  25, 
                               height: 25),
                         ),
                       ),
@@ -95,7 +79,7 @@ class _GenreState extends State<Genre> {
                             color: Color.fromARGB(255, 187, 187, 187)
                                 .withOpacity(0.5),
                             fontWeight: FontWeight.bold
-                            // Add other text styles like fontSize, fontWeight, etc. as needed
+                           
                             ),
                       )
                     ],
@@ -118,7 +102,7 @@ class _GenreState extends State<Genre> {
                         child: Center(
                           child: Image.asset('assets/bew.png',
                               width:
-                                  25, // Adjust the width of the image as needed
+                                  25,
                               height: 25),
                         ),
                       ),
@@ -128,7 +112,7 @@ class _GenreState extends State<Genre> {
                             color: Color.fromARGB(255, 187, 187, 187)
                                 .withOpacity(0.5),
                             fontWeight: FontWeight.bold
-                            // Add other text styles like fontSize, fontWeight, etc. as needed
+                           
                             ),
                       )
                     ],

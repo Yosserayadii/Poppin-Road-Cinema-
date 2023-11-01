@@ -13,12 +13,15 @@ class _CategoryListState extends State<CategoryList> {
   final List<String> categories = ["In Theater", "Box Office", "Coming Soon"];
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 60,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) => buildCategory(index, context)));
+    return Padding(
+      padding: EdgeInsets.only(top: 30),
+      child: Container(
+          height: 60,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (context, index) => buildCategory(index, context))),
+    );
   }
 
   Padding buildCategory(int index, BuildContext context) {
