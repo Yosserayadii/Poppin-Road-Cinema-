@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Screens/HomePage/just_for_you.dart';
+import 'package:poppinroadcimema/Screens/HomePage/movie_card.dart';
+import 'package:poppinroadcimema/Screens/HomePage/movie_card_container.dart';
 import 'package:poppinroadcimema/Screens/HomePage/top_films_now.dart';
 import 'package:poppinroadcimema/Screens/HomePage/top_rated_cinema.dart';
 
@@ -10,7 +12,7 @@ class body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      children: <Widget>[TopReatedCinma() , JustForYou() , TopFilms() ],
+      children: <Widget>[TopReatedCinma() , JustForYou() , TopFilms() , MovieCard() ],
     ));
   }
 }
