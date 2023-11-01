@@ -3,14 +3,14 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/movie_interface.dart';
 import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
 
-class BottomNavigationbar extends StatefulWidget {
-  const BottomNavigationbar({Key? key}) : super(key: key);
+class bottom extends StatefulWidget {
+  const bottom({Key? key}) : super(key: key);
 
   @override
   _BottomNavigationbarState createState() => _BottomNavigationbarState();
 }
 
-class _BottomNavigationbarState extends State<BottomNavigationbar> {
+class _BottomNavigationbarState extends State<bottom> {
   int _selectedIndex = 0;
 
   @override
