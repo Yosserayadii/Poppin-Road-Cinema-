@@ -25,6 +25,7 @@ class _BottomNavigationbarState extends State<BottomNavigationbar> {
           if (_selectedIndex == 1) Movie_interface(),
           if (_selectedIndex == 2) MapScreen(),
           if (_selectedIndex == 3) Movie_interface(),
+          
         ],
       ),
       bottomNavigationBar: GNav(
