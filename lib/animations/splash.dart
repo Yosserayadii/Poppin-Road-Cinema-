@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Authentification/welcome.dart';
 
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
@@ -52,31 +53,30 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Container(
         color: Color(0xFF171B30),
-        child: Stack(
-          children: [
-            AnimatedContainer(
-              duration: Duration(seconds: 1),
-              curve: Curves.easeInOut,
-              alignment: Alignment(0.0, imagePosition),
-              child: Image.asset(
-                'assets/logoo.png',
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height / 2,
-              ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: Stack(
+              children: [
+                AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                  height: 350,
+                  alignment: Alignment(0.0, imagePosition),
+                  child: Image.asset('assets/pop.png',
+                      fit: BoxFit.cover, width: 400, height: 100),
+                ),
+                AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                  height: 350,
+                  alignment: Alignment(0.0, -imagePosition),
+                  child: Image.asset('assets/picker.png',
+                      fit: BoxFit.cover, width: 100, height: 100),
+                ),
+              ],
             ),
-            AnimatedContainer(
-              duration: Duration(seconds: 1),
-              curve: Curves.easeInOut,
-              alignment: Alignment(0.0, -imagePosition),
-              child: Image.asset(
-                'assets/logo.png',
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height / 2,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
