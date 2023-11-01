@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poppinroadcimema/Authentification/signin.dart';
 import 'package:poppinroadcimema/Authentification/welcome.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
@@ -177,7 +178,7 @@ void _showRatingPopUp(BuildContext context) {
               Navigator.of(context).pop(); // Close the dialog
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Welcome()),
+                MaterialPageRoute(builder: (context) => SignInScreen()),
               );
             },
             child: Text("Login"),

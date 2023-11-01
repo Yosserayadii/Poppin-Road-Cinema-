@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
-
-import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class TopFilms extends StatelessWidget {
@@ -33,12 +31,12 @@ class TopFilms extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: Colors.amberAccent),
-              child: Column(children: [
+                  color: CustomColors.primaryColor),
+              child: Stack(children: [
                 ClipRRect(
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(16),
-                        topRight: Radius.circular(16) ,
+                        topRight: Radius.circular(16),
                         bottomLeft: Radius.circular(16)),
                     child: Image.asset(
                       movies.elementAt(index).poster,
@@ -46,7 +44,47 @@ class TopFilms extends StatelessWidget {
                       fit: BoxFit.cover,
                       width: double.infinity,
                     )),
-                    Text(movies.elementAt(index).title)
+                Positioned(
+                  bottom: 10,
+                  right: 0,
+                  left: 0,
+                  child: Container(
+                      width: MediaQuery.of(context).size.width * 0.48,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(193, 228, 228, 228),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 5),
+                            blurRadius: 50,
+                            color: Colors.black26.withOpacity(0.5),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  movies.elementAt(index).title,
+                                  style: TextStyle(color: CustomColors.accentColor , fontSize: 16 , fontWeight: FontWeight.bold ),
+                                  
+                                ),
+                                Text(
+                                  movies.elementAt(index).rating.toString(),
+                                )
+                              ],
+                            ),
+                            Text(movies.elementAt(index).plot.length > 50
+                                ? '${movies.elementAt(index).plot.substring(0, 50)}...'
+                                : movies.elementAt(index).plot),
+                          ],
+                        ),
+                      )),
+                ),
               ]),
             );
           })

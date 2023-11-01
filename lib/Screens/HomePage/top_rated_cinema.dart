@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class TopReatedCinma extends StatefulWidget {
@@ -99,11 +100,16 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                         },
                         child: GestureDetector(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
+                            /*  ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
                                     "Hello yougggh tappgged at ${index + 1} "),
                               ),
+                            ); */
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => homescreen()),
                             );
                           },
                           onPanDown: (d) {
@@ -234,8 +240,10 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10.0),
                                       child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text('Check Our films'),
+                                        onPressed: () {
+
+                                        },
+                                        child: const Text('Check in map'),
                                       ),
                                     )
                                   ],
