@@ -87,7 +87,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                   height: 2.0,
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 240,
                   child: PageView.builder(
                     controller: pageController,
                     onPageChanged: (index) {
@@ -145,107 +145,79 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(25),
                                     child: Image.asset(
-                                        "${Cinemas.elementAt(index).image}"),
+                                      "${Cinemas.elementAt(index).image}",
+                                      width: 120,
+                                    ),
                                   ),
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 15, bottom: 9),
-                                      child: Text(
-                                        " Cinemas.elementAt(index).title" ,
-                                        textAlign: TextAlign.end,
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 27,
-                                      height: 6,
-                                      decoration: ShapeDecoration(
-                                        color: CustomColors.fifthColor,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                      ),
-                                    ),
-                                    const Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 10, left: 5, bottom: 10),
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.add_location_rounded,
-                                                size: 12.0,
-                                                color: Colors.white),
-                                            Text(
-                                              'Tunisia City , Ariana ',
+                                Container(
+                                  width: 170,
+                                  child: Column(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 15, bottom: 9),
+                                            child: Text(
+                                              Cinemas.elementAt(index).title ??
+                                                  '',
+                                              textAlign: TextAlign.start,
+                                              softWrap: true,
                                               style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ],
-                                        )),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          width: 17,
-                                          height: 15,
-                                          decoration: const ShapeDecoration(
-                                            color: Color(0xFFD9D9D9),
-                                            shape: StarBorder(
-                                              points: 5,
-                                              innerRadiusRatio: 0.38,
-                                              pointRounding: 0,
-                                              valleyRounding: 0,
-                                              rotation: 0,
-                                              squash: 0,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 17,
-                                          height: 15,
-                                          decoration: const ShapeDecoration(
-                                            color: Color(0xFFD9D9D9),
-                                            shape: StarBorder(
-                                              points: 5,
-                                              innerRadiusRatio: 0.38,
-                                              pointRounding: 0,
-                                              valleyRounding: 0,
-                                              rotation: 0,
-                                              squash: 0,
+                                          Container(
+                                            width: 27,
+                                            height: 6,
+                                            decoration: ShapeDecoration(
+                                              color: CustomColors.fifthColor,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 19,
-                                          height: 15,
-                                          decoration: const ShapeDecoration(
-                                            color: Color(0xFFD9D9D9),
-                                            shape: StarBorder(
-                                              points: 5,
-                                              innerRadiusRatio: 0.38,
-                                              pointRounding: 0,
-                                              valleyRounding: 0,
-                                              rotation: 0,
-                                              squash: 0,
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 10, left: 5, bottom: 10),
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                      Icons
+                                                          .add_location_rounded,
+                                                      size: 12.0,
+                                                      color: Colors.white),
+                                                  Container(
+                                                    width: 150,
+                                                    child: Text(
+                                                      Cinemas.elementAt(index)
+                                                              .address!.substring(0 , 30) ??
+                                                          '',
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight: FontWeight
+                                                              .normal),
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                         
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 0.0),
+                                            child: ElevatedButton(
+                                              onPressed: () {},
+                                              child: const Text('Check in map'),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10.0),
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text('Check in map'),
+                                          )
+                                        ],
                                       ),
-                                    )
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

@@ -50,7 +50,7 @@ class TopFilms extends StatelessWidget {
                   left: 0,
                   child: Container(
                       width: MediaQuery.of(context).size.width * 0.48,
-                      height: 90,
+                      height: 100,
                       decoration: BoxDecoration(
                         color: Color.fromARGB(197, 40, 40, 54).withOpacity(0.5),
                         borderRadius: BorderRadius.circular(16),
@@ -79,7 +79,7 @@ class TopFilms extends StatelessWidget {
                                  style: TextStyle(
                                   color: Color.fromARGB(255, 155, 158, 172),
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                                  ),
                            
                             ),
                             Text(movies.elementAt(index).plot.length > 40
@@ -88,8 +88,7 @@ class TopFilms extends StatelessWidget {
                                 
                                    style: TextStyle(
                                   color: Color.fromARGB(255, 143, 145, 159),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 16, ),
                            ),
                           ],
                         ),
