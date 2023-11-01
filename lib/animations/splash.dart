@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Authentification/signin.dart';
 import 'package:poppinroadcimema/Authentification/welcome.dart';
 
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
@@ -30,7 +31,8 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              SignInScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;

@@ -34,16 +34,16 @@ class _HomeState extends State<HomeCinema> {
                 padding: const EdgeInsets.only(right: 25.0),
                 child: GestureDetector(
                   onTap: () {
-                    _showRatingPopUp(context);
+                    _showMapPopUp(context);
                   },
                   child: const Icon(Icons.search),
                 )),
           ],
         ),
-        body: body());
+        body: BodyHomePage());
   }
 
-  void _showRatingPopUp(BuildContext context) {
+  void _showMapPopUp(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
