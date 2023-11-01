@@ -52,7 +52,7 @@ class TopFilms extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.48,
                       height: 90,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(193, 228, 228, 228),
+                        color: Color.fromARGB(197, 40, 40, 54).withOpacity(0.5),
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
@@ -70,16 +70,27 @@ class TopFilms extends StatelessWidget {
                             Text(
                               movies.elementAt(index).title,
                               style: TextStyle(
-                                  color: CustomColors.accentColor,
+                                  color: const Color.fromARGB(255, 208, 211, 230),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
                               movies.elementAt(index).rating.toString(),
+                                 style: TextStyle(
+                                  color: Color.fromARGB(255, 155, 158, 172),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                           
                             ),
                             Text(movies.elementAt(index).plot.length > 40
                                 ? '${movies.elementAt(index).plot.substring(0, 40)}...'
-                                : movies.elementAt(index).plot),
+                                : movies.elementAt(index).plot ,
+                                
+                                   style: TextStyle(
+                                  color: Color.fromARGB(255, 143, 145, 159),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                           ),
                           ],
                         ),
                       )),

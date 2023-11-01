@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poppinroadcimema/Models/Cinema.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
@@ -143,8 +145,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(25),
                                     child: Image.asset(
-                                      'assets/logoo.png',
-                                    ),
+                                        "${Cinemas.elementAt(index).image}"),
                                   ),
                                 ),
                                 Column(
@@ -154,7 +155,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                       padding:
                                           EdgeInsets.only(top: 15, bottom: 9),
                                       child: Text(
-                                        'Pathy',
+                                        " Cinemas.elementAt(index).title" ,
                                         textAlign: TextAlign.end,
                                         style: TextStyle(
                                             fontSize: 20,
@@ -240,9 +241,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10.0),
                                       child: ElevatedButton(
-                                        onPressed: () {
-
-                                        },
+                                        onPressed: () {},
                                         child: const Text('Check in map'),
                                       ),
                                     )

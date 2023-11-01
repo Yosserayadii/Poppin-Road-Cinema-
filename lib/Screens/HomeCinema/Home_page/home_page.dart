@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/body.dart';
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
 import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
