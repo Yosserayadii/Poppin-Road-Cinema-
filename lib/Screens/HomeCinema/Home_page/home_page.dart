@@ -26,14 +26,7 @@ class _homescreenState extends State<homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColors.primaryColor,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-        ),
-      ),
+     
       body: _pages[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
        backgroundColor: CustomColors.primaryColor,
