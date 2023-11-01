@@ -19,7 +19,7 @@ class _MapScreenState extends State<MapScreen> {
         toolbarHeight: 60.2,
         toolbarOpacity: 0.8,
       ),
-      body: MapWidget(),
+      body: Expanded(child: MapWidget()),
     );
   }
 }

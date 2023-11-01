@@ -5,17 +5,14 @@ import 'package:poppinroadcimema/Screens/HomePage/movie_card_container.dart';
 import 'package:poppinroadcimema/Screens/HomePage/top_films_now.dart';
 import 'package:poppinroadcimema/Screens/HomePage/top_rated_cinema.dart';
 
-class body extends StatelessWidget {
-  const body({super.key});
+class BodyHomePage extends StatelessWidget {
+  const BodyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      children: <Widget>[TopReatedCinma() , JustForYou() , Padding(
-        padding: const EdgeInsets.all(24),
-        child: TopFilms(),
-      )],
+      children: <Widget>[TopReatedCinma(), JustForYou(), TopFilms()],
     ));
   }
 }
