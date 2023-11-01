@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/body.dart';
+
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
-import 'package:poppinroadcimema/reusable_widgets/Bottom_navigation_bar.dart';
+
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
 
@@ -20,17 +21,16 @@ class _homescreenState extends State<homescreen> {
     Movie_interface(),
     MapScreen(),
     HomeCinema(),
-    // Add more screens for other tabs as needed
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: _pages[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
-       backgroundColor: CustomColors.primaryColor,
-       color: Color.fromARGB(103, 104, 117, 143),
+        backgroundColor: CustomColors.primaryColor,
+        color: Color.fromRGBO(49, 54, 77,
+                              0.486),
         animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {
@@ -38,10 +38,15 @@ class _homescreenState extends State<homescreen> {
           });
         },
         items: [
-          Icon(Icons.home),
-          Icon(Icons.map),
-          Icon(Icons.movie),
-     
+          Icon(FeatherIcons.home, 
+           color: CustomColors.textColor,
+          ),
+          Icon(FeatherIcons.map , 
+          color: CustomColors.textColor,
+          ),
+          Icon(FeatherIcons.film , 
+          color: CustomColors.textColor,
+          ),
         ],
       ),
     );
