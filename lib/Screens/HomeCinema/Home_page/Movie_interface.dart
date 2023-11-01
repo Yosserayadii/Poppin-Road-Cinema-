@@ -15,9 +15,10 @@ class _Movie_interfaceState extends State<Movie_interface> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-    CategoryList(),
+     CategoryList(),
     Genre(),
     MovieCaroussel(),
+    
       ],
     );
   }

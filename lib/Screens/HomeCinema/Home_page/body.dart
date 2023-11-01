@@ -14,12 +14,16 @@ class body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-  body: 
-    Container(
-      child: BottomNavigationbar(),
+    
+    return Column(
+  children: <Widget>[
+    CategoryList(),
+    Genre(),
+    MovieCaroussel(),
+    Expanded(
+      child: bottom(),
     ),
-  
+  ],
 );
 
 }
