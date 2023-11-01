@@ -65,21 +65,20 @@ class TopFilms extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  movies.elementAt(index).title,
-                                  style: TextStyle(color: CustomColors.accentColor , fontSize: 16 , fontWeight: FontWeight.bold ),
-                                  
-                                ),
-                                Text(
-                                  movies.elementAt(index).rating.toString(),
-                                )
-                              ],
+                            Text(
+                              movies.elementAt(index).title,
+                              style: TextStyle(
+                                  color: CustomColors.accentColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            Text(movies.elementAt(index).plot.length > 50
-                                ? '${movies.elementAt(index).plot.substring(0, 50)}...'
+                            Text(
+                              movies.elementAt(index).rating.toString(),
+                            ),
+                            Text(movies.elementAt(index).plot.length > 40
+                                ? '${movies.elementAt(index).plot.substring(0, 40)}...'
                                 : movies.elementAt(index).plot),
                           ],
                         ),
