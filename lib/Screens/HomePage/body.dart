@@ -12,7 +12,10 @@ class body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      children: <Widget>[TopReatedCinma() , JustForYou() , TopFilms() , MovieCard() ],
+      children: <Widget>[TopReatedCinma() , JustForYou() , Padding(
+        padding: const EdgeInsets.all(24),
+        child: TopFilms(),
+      )],
     ));
   }
 }

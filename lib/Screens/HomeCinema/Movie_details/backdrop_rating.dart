@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poppinroadcimema/Authentification/welcome.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+
 
 class BackdropAndRating extends StatefulWidget {
   const BackdropAndRating({
@@ -44,7 +46,7 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
               width: widget.size.width * 0.9,
               height: 100,
               decoration: BoxDecoration(
-                 color: Color.fromARGB(172, 228, 228, 228),
+                color: Color.fromARGB(172, 228, 228, 228),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(50),
                   topLeft: Radius.circular(50),
@@ -102,15 +104,16 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
                         },
                         child: Lottie.asset(
                           'assets/animated_star.json',
-                          width: 50, // Adjust width as needed
-                          height: 50, // Adjust height as needed
+                          width: 50,
+                          height: 50,
                         ),
                       ),
                       SizedBox(height: 2),
-                      Text("Rate this Movie" ,
-                      style: TextStyle(
-                      color: Colors.black   
-                      ),
+                      Text(
+                        "Rate this Movie",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -137,9 +140,9 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
                       ),
                       Text(
                         "Meta Score",
-                         style: TextStyle(
-                      color: Colors.black   
-                      ),
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
                       ),
                       Text(
                         "${widget.movie.criticsReview} critic reviews",
@@ -161,59 +164,33 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
     );
   }
 
-  void _showRatingPopUp(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Container(
-          color: Color.fromARGB(127, 49, 54, 77), // Background color
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Rate this movie",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(5, (index) {
-                  final starNumber = index + 1;
-                  bool isSelected = starNumber <= selectedRating;
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedRating = starNumber;
-                      });
-                    },
-                    child: Icon(FeatherIcons.star,
-                        size: 40,
-                        color: isSelected
-                            ? Colors.amber
-                            : CustomColors.primaryColor),
-                  );
-                }),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the submit button action
-                  Navigator.of(context).pop(); // Close the pop-up
-                },
-                child: Text("Submit"),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 }
+void _showRatingPopUp(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("You must be connected to submit your review"),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Welcome()),
+              );
+            },
+            child: Text("Login"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Cancel"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
