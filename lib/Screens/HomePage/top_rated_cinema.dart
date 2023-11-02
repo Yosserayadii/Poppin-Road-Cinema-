@@ -87,7 +87,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                   height: 2.0,
                 ),
                 SizedBox(
-                  height: 240,
+                  height: 190,
                   child: PageView.builder(
                     controller: pageController,
                     onPageChanged: (index) {
@@ -146,12 +146,14 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                     borderRadius: BorderRadius.circular(25),
                                     child: Image.asset(
                                       "${Cinemas.elementAt(index).image}",
+                                      fit: BoxFit.cover,
                                       width: 120,
+                                      height: 190,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  width: 170,
+                                  width: 177,
                                   child: Column(
                                     children: [
                                       Column(
@@ -167,7 +169,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                               textAlign: TextAlign.start,
                                               softWrap: true,
                                               style: TextStyle(
-                                                  fontSize: 20,
+                                                  fontSize: 17,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ),
@@ -195,20 +197,23 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                                     width: 150,
                                                     child: Text(
                                                       Cinemas.elementAt(index)
-                                                              .address!.substring(0 , 30) ??
+                                                              .address!
+                                                              .substring(
+                                                                  0, 30) ??
                                                           '',
                                                       style: TextStyle(
-                                                          fontSize: 14,
+                                                          fontSize: 13,
                                                           fontWeight: FontWeight
                                                               .normal),
                                                     ),
                                                   )
                                                 ],
                                               )),
-                                         
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 0.0),
+                                          Container(
+                                            padding:
+                                                const EdgeInsets.only(top: 0.0),
+                                            height: 25,
+                                            width: 120,
                                             child: ElevatedButton(
                                               onPressed: () {},
                                               child: const Text('Check in map'),
