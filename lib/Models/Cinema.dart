@@ -29,7 +29,7 @@ final Cinemas = [
       address: '103 Hampstead Rd, London NW1 3EL, United Kingdom',
       location: LatLng(36.8983082, 10.1222151),
       rating: 5),
-       Cinema(
+  Cinema(
       image: 'assets/abc.png',
       title: "ABC Cinéma Tunis",
       address: '2 More London Riverside, London SE1 2AP, United Kingdom',
@@ -37,7 +37,7 @@ final Cinemas = [
       rating: 3),
   Cinema(
       image: 'assets/pathe_sousse.png',
-      title: "Cinéma Pathé Mall of Sousse",
+      title: ' Pathé Mall of Sousse',
       address: '122 Palace Gardens Terrace, London W8 4RT, United Kingdom',
       location: LatLng(35.901849, 10.5410693),
       rating: 2),

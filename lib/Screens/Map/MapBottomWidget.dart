@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
+import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class MapBottomWidget extends StatelessWidget {
   final PageController pageController;
@@ -39,35 +40,48 @@ class MapBottomWidget extends StatelessWidget {
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Text(
-                              item.title ?? '',
-                              style: const TextStyle(
-                                fontSize: 16, // Reduced the font size
-                                fontWeight: FontWeight.bold,
+                            Container(
+                              width: 180,
+                              child: Text(
+                                item.title ?? '',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             SizedBox(
-                              width: 5, // Reduced the width
+                              width: 5,
                             ),
                             Icon(
                               FeatherIcons.star,
                               color: Colors.orange,
-                              size: 14, // Reduced the size
+                              size: 14,
                             ),
                             Text(
                               item.rating.toString(),
                               style: const TextStyle(
-                                fontSize: 16, // Reduced the font size
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.orange,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 5), // Reduced the height
+                        Container(
+                          width: 27,
+                          height: 6,
+                          decoration: ShapeDecoration(
+                            color: CustomColors.fifthColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
                         Text(
                           item.address ?? '',
                           style: const TextStyle(
