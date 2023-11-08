@@ -10,7 +10,7 @@ class AppConstants {
   // static const String mapBoxStyleId = 'clnd1lnsr03o401qudtdvcoar';
   static const String mapBoxStyleId = 'clnhy7iyx025b01qn107677t3';
 
-  static final myLocation = LatLng(51.5090214, -0.1982948);
+  static final myLocation = LatLng(36.863153, 10.1368414);
 
   static Future<LatLng> getCurrentLocation() async {
     try {

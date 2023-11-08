@@ -18,9 +18,9 @@ class homescreen extends StatefulWidget {
 class _homescreenState extends State<homescreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
+    HomeCinema(),
     Movie_interface(),
     MapScreen(),
-    HomeCinema(),
   ];
 
   @override
