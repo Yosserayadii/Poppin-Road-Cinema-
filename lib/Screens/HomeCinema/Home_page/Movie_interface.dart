@@ -19,8 +19,8 @@ class _Movie_interfaceState extends State<Movie_interface> {
      Container(
        height: MediaQuery.of(context).size.height - 65,
        child:  Column(
-        children: [
-       CategoryList(),
+       children: [
+      CategoryList(),
       Genre(),
       MovieCaroussel(),
       
