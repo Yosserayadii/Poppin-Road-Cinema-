@@ -1,6 +1,5 @@
-ext.kotlin_version = '1.9.10'
-
 buildscript {
+    ext.kotlin_version = '1.9.10'
     repositories {
         google()
         mavenCentral()
@@ -10,6 +9,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha01"
+
     }
 }
 
@@ -21,9 +21,10 @@ allprojects {
 }
 
 rootProject.buildDir = '../build'
-
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
     project.evaluationDependsOn(':app')
 }
 
