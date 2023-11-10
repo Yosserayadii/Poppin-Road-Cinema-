@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
@@ -111,7 +112,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => homescreen()),
+                                  builder: (context) => Movie_interface()),
                             );
                           },
                           onPanDown: (d) {
