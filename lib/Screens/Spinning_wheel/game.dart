@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:confetti/confetti.dart';
 
 class Spinning_wheel extends StatefulWidget {
-  const Spinning_wheel({super.key});
+  const Spinning_wheel({Key? key});
 
   @override
   State<Spinning_wheel> createState() => _Spinning_wheelState();
@@ -15,13 +16,15 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
   final selected = BehaviorSubject<int>();
   int rewards = 0;
   List<int> items = [5, 20, 30, 40, 50, 60, 70, 80];
-  int timeLeft = 0; 
+  int timeLeft = 60; // Set countdown to 1 minute
   bool canSpin = false;
-  bool showCongrats = false;
+  bool isSpinning = false;
+  late ConfettiController _confettiController;
 
   @override
   void initState() {
     super.initState();
+    _confettiController = ConfettiController(duration: const Duration(seconds: 2));
     checkLastSpinTime();
   }
 
@@ -35,54 +38,42 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
         canSpin = true;
         timeLeft = 0;
       });
-    } else {
-      final actualEndTime = lastSpinTime + 24 * 60 * 60;
-      final remainingTime = actualEndTime - currentTime;
-      setState(() {
-        canSpin = false;
-        timeLeft = remainingTime;
-      });
-      startCountdownTimer();
     }
-  }
-
-  void startCountdownTimer() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      if (timeLeft <= 0) {
-        setState(() {
-          canSpin = true;
-          timeLeft = 0;
-        });
-        timer.cancel();
-      } else {
-        setState(() {
-          timeLeft--;
-        });
-      }
-    });
-  }
-
-  Future<void> saveLastSpinTime() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setInt('lastSpinTime', DateTime.now().millisecondsSinceEpoch ~/ 1000);
-  }
-
-  void showCongratulations() {
-    setState(() {
-      showCongrats = true;
-    });
-  }
-
-  void hideCongratulations() {
-    setState(() {
-      showCongrats = false;
-    });
   }
 
   @override
   void dispose() {
     selected.close();
+    _confettiController.dispose();
     super.dispose();
+  }
+
+  void showConfetti() {
+    setState(() {
+      _confettiController.play();
+    });
+  }
+
+  Future<void> startSpin() async {
+    if (canSpin) {
+      setState(() {
+        isSpinning = true;
+      });
+      selected.add(Fortune.randomInt(0, items.length));
+      await Future.delayed(const Duration(seconds: 2)); 
+      setState(() {
+        rewards = items[selected.value];
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("You just won $rewards Points"),
+          ),
+        );
+        canSpin = false;
+        saveLastSpinTime();
+        isSpinning = false;
+        showConfetti();
+      });
+    }
   }
 
   @override
@@ -90,11 +81,10 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
     return Scaffold(
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 300, 
+              height: 300,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -122,7 +112,7 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                     ),
                     child: FortuneWheel(
                       selected: selected.stream,
-                      animateFirst: false,
+                      animateFirst: isSpinning, 
                       items: [
                         for (int i = 0; i < items.length; i++) ...<FortuneItem>[
                           FortuneItem(
@@ -142,38 +132,38 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                         ]
                       ],
                       onAnimationEnd: () {
-                        setState(() {
-                          rewards = items[selected.value];
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("You just won $rewards Points"),
-                            ),
-                          );
-                          canSpin = false;
-                          timeLeft = 24 * 60 * 60;
-                          saveLastSpinTime();
-                          showCongratulations();
-                        });
+                       
                       },
                     ),
                   ),
-                  GestureDetector(
-                    onTap: canSpin
-                        ? () {
-                            selected.add(Fortune.randomInt(0, items.length));
-                          }
-                        : null,
-                    child: Image.asset(
-                      'assets/spin.png',
-                      width: 80,
-                      height: 80,
+                  TextButton(
+                    onPressed: startSpin, 
+                    child: Text(
+                      "SPIN",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return Colors.grey;
+                        }
+                        return Colors.red;
+                      }),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 100, 
+              height: 100,
             ),
             Text(
               canSpin ? "Ready to spin!" : "Time left: ${formatTime(timeLeft)}",
@@ -183,25 +173,29 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                 color: Colors.blue,
               ),
             ),
-            if (showCongrats)
-              GestureDetector(
-                onTap: hideCongratulations,
-                child: Image.asset(
-                  'assets/congratulations.gif',
-                  width: 400,
-                  height: 400,
-                ),
-              ),
           ],
         ),
+      ),
+      floatingActionButton: ConfettiWidget(
+        confettiController: _confettiController,
+        blastDirectionality: BlastDirectionality.explosive,
+        maxBlastForce: 20,
+        minBlastForce: 8,
+        emissionFrequency: 0.05,
+        numberOfParticles: 50,
+        gravity: 0.1,
       ),
     );
   }
 
   String formatTime(int timeInSeconds) {
-    final hours = (timeInSeconds ~/ 3600).toString().padLeft(2, '0');
-    final minutes = ((timeInSeconds % 3600) ~/ 60).toString().padLeft(2, '0');
+    final minutes = (timeInSeconds ~/ 60).toString().padLeft(2, '0');
     final seconds = (timeInSeconds % 60).toString().padLeft(2, '0');
-    return '$hours:$minutes:$seconds';
+    return '$minutes:$seconds';
+  }
+
+  Future<void> saveLastSpinTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('lastSpinTime', DateTime.now().millisecondsSinceEpoch ~/ 1000);
   }
 }

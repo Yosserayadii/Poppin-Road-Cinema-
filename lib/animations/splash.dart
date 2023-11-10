@@ -5,6 +5,7 @@ import 'package:poppinroadcimema/Authentification/welcome.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
 import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
+import 'package:poppinroadcimema/Screens/test.dart';
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
 
@@ -31,7 +32,7 @@ class _SplashState extends State<Splash> {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
-              homescreen(),
+             TestScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;
