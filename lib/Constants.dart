@@ -23,4 +23,5 @@ class AppConstants {
       return myLocation; // Return a default location in case of an error
     }
   }
+   
 }
