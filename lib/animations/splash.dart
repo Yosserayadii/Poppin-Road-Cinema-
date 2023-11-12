@@ -7,6 +7,9 @@ import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
 import 'package:poppinroadcimema/Screens/SeatsBooking/SeatsBooking.dart';
 import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
 
+import 'package:poppinroadcimema/Screens/chatbot/chat_screen.dart';
+import 'package:poppinroadcimema/Screens/test.dart';
+
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
 

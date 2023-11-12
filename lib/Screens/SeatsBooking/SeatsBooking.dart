@@ -8,7 +8,7 @@ class SeatsBooking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Book seats "),
+        title: const Text("Seats Booking "),
         titleSpacing: 00.0,
         centerTitle: true,
         toolbarHeight: 60.2,
