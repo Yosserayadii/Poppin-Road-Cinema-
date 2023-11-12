@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:poppinroadcimema/Screens/chatbot/chat_widget.dart';
 import 'package:poppinroadcimema/Screens/chatbot/text_widget.dart';
+import 'package:poppinroadcimema/providers/models_provider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:poppinroadcimema/services/api_services.dart';
 import 'package:poppinroadcimema/services/assets_manager.dart';
 import 'package:poppinroadcimema/services/servies.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -33,6 +36,7 @@ class _chat_screenState extends State<chat_screen> {
   }
   @override
   Widget build(BuildContext context) {
+      final modelsProvider=Provider.of<ModelsProvider>(context);
     return  Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -86,7 +90,15 @@ class _chat_screenState extends State<chat_screen> {
           
                 )
                 ) ,
-                IconButton(onPressed: (){}, icon: Icon(Icons.send , color: CustomColors.fifthColor))
+                IconButton(onPressed: ()async{
+                try{
+               await ApiService.sendMessage(message:textEditingController.text, modelId: modelsProvider.getCurrent);
+                }catch(error)
+                {
+                  print(error);
+                }
+
+                }, icon: Icon(Icons.send , color: CustomColors.fifthColor))
               ],
             ),
           )

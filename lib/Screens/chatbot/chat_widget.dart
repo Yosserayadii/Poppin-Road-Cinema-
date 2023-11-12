@@ -4,7 +4,7 @@ import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:poppinroadcimema/services/assets_manager.dart';
 
 class ChatWidget extends StatelessWidget {
-  const ChatWidget({super.key, required this.msg, required this.chatIndex});
+const ChatWidget({super.key, required this.msg, required this.chatIndex});
  final String msg ; 
  final int chatIndex;
 
@@ -15,7 +15,7 @@ class ChatWidget extends StatelessWidget {
         Material(
           color: chatIndex==0 ?Color.fromARGB(123, 91, 109, 203): CustomColors.textColor  , 
            child: Padding(padding: const EdgeInsets.all(8.0),
-          child: Row(
+           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
