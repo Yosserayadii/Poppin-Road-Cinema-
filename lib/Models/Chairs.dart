@@ -1,20 +1,36 @@
+import 'dart:math';
+
 class Chair {
-  int row;
+  String row;
   int column;
   int status;
+  double price;
 
-  Chair({required this.row, required this.column, required this.status});
+  Chair(
+      {required this.row,
+      required this.column,
+      required this.status,
+      required this.price});
+}
 
-  factory Chair.free(int row, int column) {
-    return Chair(row: row, column: column, status: 1); // 1 represents free
+List<List<Chair>> generateChairsMatrix(int columns, int rows) {
+  List<List<Chair>> matrix = [];
+  Random random = Random();
+
+  for (int i = 0; i < rows; i++) {
+    List<Chair> row = [];
+    for (int j = 0; j < columns; j++) {
+      String alphabetRow = String.fromCharCode('A'.codeUnitAt(0) + i);
+      row.add(Chair(
+          row: alphabetRow,
+          column: j + 1,
+          status: random.nextInt(2),
+          // Generate a random double between 20.0 and 100.0 with increments of 0.5
+          price: (20.0 + random.nextInt(61) * 0.5)));
+    }
+
+    matrix.add(row);
   }
 
-  factory Chair.reserved(int row, int column) {
-    return Chair(row: row, column: column, status: 2); // 2 represents reserved
-  }
-
-  factory Chair.notAvailable(int row, int column) {
-    return Chair(
-        row: row, column: column, status: 3); // 3 represents not available
-  }
+  return matrix;
 }

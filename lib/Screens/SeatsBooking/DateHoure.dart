@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/DateAndTime.dart';
+import 'package:poppinroadcimema/provider/PriceProvider.dart';
+import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
 import 'dart:math' as math;
 
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:provider/provider.dart';
 
 class DateHourWidget extends StatefulWidget {
   const DateHourWidget({Key? key});
@@ -32,9 +35,11 @@ class _DateHourWidgetState extends State<DateHourWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = Provider.of<PriceProvider>(context).totalPrice;
+
     return Container(
       padding: EdgeInsets.all(10),
-      height: 250, // Increase the height as needed
+      height: 300, // Increase the height as needed
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 17, 32, 63),
@@ -76,7 +81,7 @@ class _DateHourWidgetState extends State<DateHourWidget> {
                                 margin: EdgeInsets.all(8.0),
                                 padding: EdgeInsets.all(24.0),
                                 decoration: BoxDecoration(
-                                  color: CustomColors.fifthColor,
+                                  color: CustomColors.primaryColor,
                                   borderRadius: BorderRadius.circular(8.0),
                                   boxShadow: [
                                     BoxShadow(
@@ -194,6 +199,52 @@ class _DateHourWidgetState extends State<DateHourWidget> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15.0, 10, 15, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Total price :",
+                      style: TextStyle(color: CustomColors.textColor),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      "$totalPrice \$",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: CustomColors.fifthColor,
+                    shadowColor: Color.fromARGB(0, 198, 219, 6),
+                    elevation: 50,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                  ),
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        "Book Ticket",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 14),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
