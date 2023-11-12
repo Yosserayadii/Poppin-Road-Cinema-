@@ -23,25 +23,44 @@ class SignInScreen extends StatelessWidget {
           ),
 
           Container(
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end, // Align to the bottom
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Dive into a new adventure with Poppin Road Cinema",
-                  style: TextStyle(color: Colors.white, fontSize: 24.0),
+                  "Favourite movie ticket",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 20),
                 Text(
-                  "Favourite movie ticket",
-                  style: TextStyle(color: Colors.white, fontSize: 36.0),
+                  "Dive into a new adventure with Poppin Road Cinema",
+                  style: TextStyle(
+                      color: CustomColors.fourthColor, fontSize: 18.0),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     _showSignInSignUpModal(context);
                   },
-                  child: Text("Sign In / Sign Up"),
+                  child: Container(
+                    height: 45,
+                    width: MediaQuery.of(context).size.width - 10,
+                    child: Center(
+                      child: Text(
+                        "Sign In / Sign Up",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ),
                 ),
+                SizedBox(height: 40),
               ],
             ),
           ),
