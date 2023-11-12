@@ -4,6 +4,7 @@ import 'package:poppinroadcimema/Authentification/welcome.dart';
 
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
+import 'package:poppinroadcimema/Screens/SeatsBooking/SeatsBooking.dart';
 import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
 
 class Splash extends StatefulWidget {
@@ -31,7 +32,8 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              SeatsBooking(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;
