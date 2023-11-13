@@ -4,7 +4,9 @@ import 'package:poppinroadcimema/Authentification/welcome.dart';
 
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
+import 'package:poppinroadcimema/Screens/SeatsBooking/SeatsBooking.dart';
 import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
+
 import 'package:poppinroadcimema/Screens/chatbot/chat_screen.dart';
 import 'package:poppinroadcimema/Screens/test.dart';
 
@@ -33,7 +35,7 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => HomeCinema(),
+          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;

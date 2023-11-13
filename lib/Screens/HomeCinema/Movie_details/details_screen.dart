@@ -4,6 +4,7 @@ import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Movie_details/TitleAndDuration.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Movie_details/backdrop_rating.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Movie_details/body_details.dart';
+import 'package:poppinroadcimema/Screens/SeatsBooking/SeatsBooking.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
@@ -33,7 +34,12 @@ class details_Screen extends StatelessWidget {
                 child: CustomButton(
                   title: "Get Ticket",
                   color: CustomColors.fifthColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SeatsBooking()),
+                    );
+                  },
                 ),
               ),
             ),
