@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Screens/HomePage/body.dart';
-import 'package:poppinroadcimema/Screens/Map/Map.dart';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
+
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class HomeCinema extends StatefulWidget {
@@ -23,7 +23,7 @@ class _HomeState extends State<HomeCinema> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MapScreen()),
+                      MaterialPageRoute(builder: (context) => HomeCinema()),
                     );
                   },
                   child: const Icon(
@@ -81,7 +81,7 @@ class _HomeState extends State<HomeCinema> {
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(24.0))),
                   height: MediaQuery.of(context).size.height - 100,
-                  child: MapWidget(),
+                  child: HomeCinema(),
                 ),
               ],
             ),

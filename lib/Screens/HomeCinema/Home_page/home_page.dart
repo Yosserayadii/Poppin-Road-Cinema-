@@ -4,9 +4,10 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
 
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
+import 'package:poppinroadcimema/Screens/chatbot/chat_screen1.dart';
 
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
-import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
+
 
 class homescreen extends StatefulWidget {
   const homescreen({super.key});
@@ -19,7 +20,7 @@ class _homescreenState extends State<homescreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     Movie_interface(),
-    MapScreen(),
+    chatHome(),
     HomeCinema(),
   ];
 
