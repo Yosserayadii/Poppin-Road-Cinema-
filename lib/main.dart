@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:poppinroadcimema/Routes/Route.dart';
 import 'package:poppinroadcimema/firebase_options.dart';
 import 'package:poppinroadcimema/provider/PriceProvider.dart';
+import 'package:poppinroadcimema/providers/models_provider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Styles.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,12 +25,15 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkTheme = true;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Poppin Road Cinema',
-      theme: Styles.themeData(isDarkTheme, context),
-      initialRoute: '/',
-      routes: routes,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => ModelsProvider())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Poppin Road Cinema',
+        theme: Styles.themeData(isDarkTheme, context),
+        initialRoute: '/',
+        routes: routes,
+      ),
     );
   }
 }
