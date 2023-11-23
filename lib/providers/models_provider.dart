@@ -19,7 +19,7 @@ List<ChatModel> get ModelsList{
   return modelsList;
 }
 Future<List<ChatModel>> getAllModels () async {
-  modelsList = await ApiService.getModels();
+  modelsList = (await ApiService.getModels()).cast<ChatModel>();
   return modelsList;  
 }
 }

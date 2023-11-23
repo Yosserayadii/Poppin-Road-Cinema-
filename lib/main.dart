@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:poppinroadcimema/Routes/Route.dart';
 import 'package:poppinroadcimema/firebase_options.dart';
 import 'package:poppinroadcimema/provider/PriceProvider.dart';
+import 'package:poppinroadcimema/providers/models_provider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Styles.dart';
 import 'package:provider/provider.dart';
 
@@ -26,12 +27,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkTheme = true;
     return MultiProvider(
-      providers: [
-      ChangeNotifierProvider(create: (_) => ModelsProvider() 
-      
-      )
-
-       ],
+      providers: [ChangeNotifierProvider(create: (_) => ModelsProvider())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Poppin Road Cinema',

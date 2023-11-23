@@ -22,31 +22,34 @@ class ApiService {
     return ChatModel.modelsFromSnapshot(temp);
   }
 //send ,sf function 
-static Future<void> sendMessage
-({required String message , required String modelId}) async {
+static Future<String> sendMessage({required String message, required String modelId}) async {
+  try {
     var response = await http.post(
       Uri.parse("$BASE_URL/completions"),
-      headers: {'Authorization': 'Bearer $API_KEY',
-      'Content-Type': 'application/json'
-      },
-      body:jsonEncode(
-
-     {"model" : modelId ,
-      "prompt":message,
-      "max_tokens":100
-     
-     }
-
-      )
+      headers: {'Authorization': 'Bearer $API_KEY', 'Content-Type': 'application/json'},
+      body: jsonEncode(
+        {
+          "model": modelId,
+          "prompt": message,
+          "max_tokens": 100,
+        },
+      ),
     );
 
     Map jsonResponse = jsonDecode(response.body);
 
-    if(jsonResponse["choices"].length>0){
-     log("jsonResponse text ${jsonResponse["choices"][0]["text"]}");
+    if (jsonResponse["choices"].isNotEmpty) {
+      String responseText = jsonResponse["choices"][0]["text"];
+      log("Response text: $responseText");
+      return responseText;
+    } else {
+      return ''; // Return an empty string if no response text
     }
+  } catch (error) {
+    log("error $error");
+    throw error; // Rethrow the error to handle it elsewhere if needed
   }
-
+}
 }
 
  

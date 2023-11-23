@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Authentification/signin.dart';
 import 'package:poppinroadcimema/Authentification/welcome.dart';
-
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_Page/home_page.dart';
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
 import 'package:poppinroadcimema/Screens/SeatsBooking/SeatsBooking.dart';
 import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
 
 import 'package:poppinroadcimema/Screens/chatbot/chat_screen.dart';
+import 'package:poppinroadcimema/Screens/chatbot/chat_screen1.dart';
 import 'package:poppinroadcimema/Screens/test.dart';
 
 class Splash extends StatefulWidget {
@@ -29,7 +29,8 @@ class _SplashState extends State<Splash> {
   void animateImages() async {
     await Future.delayed(Duration(seconds: 1));
     setState(() {
-      imagePosition = 0.5;
+      
+      imagePosition = 0.2;
     });
 
     Future.delayed(Duration(seconds: 2), () {
@@ -76,10 +77,10 @@ class _SplashState extends State<Splash> {
               curve: Curves.easeInOut,
               alignment: Alignment(0.0, -imagePosition),
               child: Image.asset(
-                'assets/logo.png',
+                'assets/logo1.png',
                 fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width * 0.2,
+                height: MediaQuery.of(context).size.height / 8 ,
               ),
             ),
           ],
