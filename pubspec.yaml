@@ -62,9 +62,13 @@ dependencies:
   flutter_gif: ^0.0.4
   curved_navigation_bar: ^1.0.3
   confetti: ^0.7.0
-  intl: ^0.18.1
+  intl: ^0.17.0
   firebase_core: ^2.21.0
   firebase_database: ^10.3.3
+  ticket_widget: ^1.0.2
+  qr_flutter: ^4.1.0
+  custom_qr_generator: ^0.1.2
+
 
   
   
