@@ -55,7 +55,7 @@ class TopFilms extends StatelessWidget {
                       left: 0,
                       child: Container(
                           width: MediaQuery.of(context).size.width * 0.48,
-                          height: 40,
+                          height: 50,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(197, 40, 40, 54).withOpacity(0.5),
                             borderRadius: BorderRadius.circular(16),
@@ -68,15 +68,15 @@ class TopFilms extends StatelessWidget {
                             ],
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
+                            padding: const EdgeInsets.all(7.0),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                     Text(
                                       movies.elementAt(index).title,
                                       style: TextStyle(
                                           color: const Color.fromARGB(255, 208, 211, 230),
-                                          fontSize: 16,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Padding(
@@ -89,7 +89,7 @@ class TopFilms extends StatelessWidget {
                                       movies.elementAt(index).rating.toString(),
                                          style: TextStyle(
                                           color: const Color.fromARGB(255, 208, 211, 230),
-                                          fontSize: 16,
+                                          fontSize: 12,
                                           ),
                                     ) , 
                                     Icon( Icons.star , size: 15, color: Colors.amberAccent, )                               
