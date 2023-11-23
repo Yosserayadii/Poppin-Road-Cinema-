@@ -98,6 +98,42 @@ List<Movie> movies = [
   ),
   Movie(
     id: 3, // Changed ID to 3
+    title: "The Fault in our Stars",
+    year: 2020,
+    plot:
+        "The Fault in Our Stars is a 2014 American coming-of-age romance film directed by Josh Boone from a screenplay by Scott Neustadter and Michael H. Weber, based on the 2012 novel of the same name by John Green. The film stars Shailene Woodley and Ansel Elgort, with Laura Dern, Sam Trammell, Nat Wolff, and Willem Dafoe in supporting roles. The story centers on a sixteen- year-old cancer patient, played by Woodley, forced by her parents to attend a support group, whe",
+    poster: "assets/story.jpg",
+    backdrop: "assets/back.jpg",
+    numOfRatings: 150212,
+    rating: 7.6,
+    criticsReview: 50,
+    metascoreRating: 79,
+    genre: ["Action", "Drama"],
+    cast: [
+      {
+        "originalName": "James Mangold",
+        "movieName": "Director",
+        "image": "assets/actor_1.png",
+      },
+      {
+        "originalName": "Mattew Damon",
+        "movieName": "Carroll",
+        "image": "assets/actor_2.png",
+      },
+      {
+        "originalName": "Christian Bale",
+        "movieName": "Ken Miles",
+        "image": "assets/actor_3.png",
+      },
+      {
+        "originalName": "Caitriona Balfe",
+        "movieName": "Mollie",
+        "image": "assets/actor_4.png",
+      },
+    ],
+  ),
+  Movie(
+    id: 3, // Changed ID to 3
     title: "Me Before You",
     year: 2020,
     plot:
