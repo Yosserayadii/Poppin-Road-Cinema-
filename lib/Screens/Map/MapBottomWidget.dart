@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
+import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class MapBottomWidget extends StatelessWidget {
@@ -26,7 +27,13 @@ class MapBottomWidget extends StatelessWidget {
         itemCount: Cinemas.length,
         itemBuilder: (_, index) {
           final item = Cinemas[index];
-          return Padding(
+          return 
+          GestureDetector (
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => HomeCinema() )),
+
+            child: 
+          
+          Padding(
             padding: const EdgeInsets.all(10.0), // Reduced the padding
             child: Card(
               elevation: 3, // Adjusted the elevation
@@ -109,8 +116,8 @@ class MapBottomWidget extends StatelessWidget {
                 ],
               ),
             ),
-          );
-        },
+           ) );
+      },
       ),
     );
   }

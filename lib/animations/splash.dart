@@ -29,7 +29,8 @@ class _SplashState extends State<Splash> {
   void animateImages() async {
     await Future.delayed(Duration(seconds: 1));
     setState(() {
-      imagePosition = 0.5;
+      
+      imagePosition = 0.2;
     });
 
     Future.delayed(Duration(seconds: 2), () {
@@ -76,10 +77,10 @@ class _SplashState extends State<Splash> {
               curve: Curves.easeInOut,
               alignment: Alignment(0.0, -imagePosition),
               child: Image.asset(
-                'assets/logo.png',
+                'assets/logo1.png',
                 fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width * 0.2,
+                height: MediaQuery.of(context).size.height / 8 ,
               ),
             ),
           ],

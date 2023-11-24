@@ -11,8 +11,7 @@ class CardMovie extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => details_Screen(movie:movie))
-        ),
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => details_Screen(movie:movie))),
         child: Column(
           children: [
             Expanded(

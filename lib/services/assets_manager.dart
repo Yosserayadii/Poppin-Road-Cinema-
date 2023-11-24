@@ -1,7 +1,6 @@
-class AssetsManager{
-  static String imagePath="assets/";
-  static String userimg="$imagePath/girl.png";
-  static String botImg="$imagePath/logo.png";
-  static String openAiLogo="assets/logoo.png";
-
+class AssetsManager {
+  static String imagePath = "assets";
+  static String userimg = "assets/girl.png";
+  static String botImg = "assets/logo.png";
+  static String openAiLogo = "assets/logoo.png";
 }
