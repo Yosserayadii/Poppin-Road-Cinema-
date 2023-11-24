@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+import 'package:poppinroadcimema/Models/User.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -105,7 +106,7 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                             fontSize: 20,
                           )),
                       TextSpan(
-                          text: "50",
+                          text:  ( user.score + rewards ).toString() ??  ''  ,
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
