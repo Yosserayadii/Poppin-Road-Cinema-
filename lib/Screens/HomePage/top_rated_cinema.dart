@@ -118,7 +118,9 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Movie_interface()),
+                                  builder: (context) => MovieInterface(
+                                        selectedCinema: cinema,
+                                      )),
                             );
                           },
                           onPanDown: (d) {
