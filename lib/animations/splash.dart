@@ -9,7 +9,6 @@ import 'package:poppinroadcimema/Screens/Spinning_wheel/game.dart';
 import 'package:poppinroadcimema/Screens/chatbot/chat_screen.dart';
 import 'package:poppinroadcimema/Screens/chatbot/chat_screen1.dart';
 import 'package:poppinroadcimema/Screens/test.dart';
-import 'package:poppinroadcimema/Screens/ticket/ticket.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => SignInScreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => homescreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;
@@ -77,7 +76,7 @@ class _SplashState extends State<Splash> {
               curve: Curves.easeInOut,
               alignment: Alignment(0.0, -imagePosition),
               child: Image.asset(
-                'assets/logo.png',
+                'assets/logo1.png',
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width * 0.2,
                 height: MediaQuery.of(context).size.height / 8,
