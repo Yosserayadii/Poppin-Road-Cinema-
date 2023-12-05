@@ -109,26 +109,10 @@ class _TestScreenState extends State<TestScreen> {
                     if (cinema.movies != null && cinema.movies!.isNotEmpty)
                       Column(
                         children: cinema.movies!.map((movie) {
-                          return Column(
-                            children: [
-                              ListTile(
-                                title:
-                                    Text(movie.title ?? 'Title Not Available'),
-                                subtitle: Text(
-                                    'Year: ${movie.year ?? 'Year Not Available'}'),
-                              ),
-                              if (movie.cast != null && movie.cast!.isNotEmpty)
-                                Column(
-                                  children: movie.cast!.map((actor) {
-                                    return ListTile(
-                                      title: Text(actor.originalName ??
-                                          'Actor Name Not Available'),
-                                      subtitle: Text(
-                                          'Movie Name: ${actor.movieName ?? 'Movie Name Not Available'}'),
-                                    );
-                                  }).toList(),
-                                ),
-                            ],
+                          return ListTile(
+                            title: Text(movie.title ?? 'Title Not Available'),
+                            subtitle: Text(
+                                'Year: ${movie.year ?? 'Year Not Available'}'),
                           );
                         }).toList(),
                       ),

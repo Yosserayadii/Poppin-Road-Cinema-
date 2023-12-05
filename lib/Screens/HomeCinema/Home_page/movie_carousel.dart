@@ -3,6 +3,7 @@ import 'package:poppinroadcimema/Models/Movie.dart';
 import 'dart:math' as math;
 
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/moviecard.dart';
+
 class MovieCaroussel extends StatefulWidget {
   const MovieCaroussel({super.key});
 
@@ -36,38 +37,34 @@ class _MovieCarousselState extends State<MovieCaroussel> {
       child: AspectRatio(
         aspectRatio: 0.85,
         child: PageView.builder(
-          onPageChanged: (value){
+          onPageChanged: (value) {
             setState(() {
-             initialPage=value;
+              initialPage = value;
             });
           },
           controller: _pageController,
           itemCount: movies.length,
-          itemBuilder: (context, index) =>
-              buildMovieSlider(index),
+          itemBuilder: (context, index) => buildMovieSlider(index),
         ),
       ),
     );
   }
 
-  Widget buildMovieSlider(int index) =>AnimatedBuilder(
-  animation: _pageController,
-  builder: (context,child){
-    double value=0;
-    if(_pageController.position.haveDimensions){
-      final page = _pageController.page ?? 0.0; // Use 0.0 as the default value if it's null
-      value = index - page;
-      value = (value * 0.15).clamp(-1, 1) ;
-    }
-  return AnimatedOpacity(
-    duration: Duration(milliseconds: 350),
-    opacity: initialPage==index?1:0.4,
-    child: Transform.rotate(
-      angle: math.pi * value,
-      child: CardMovie(movie: movies[index])),
-  );
-  }
-   
-  ) ;
-
+  Widget buildMovieSlider(int index) => AnimatedBuilder(
+      animation: _pageController,
+      builder: (context, child) {
+        double value = 0;
+        if (_pageController.position.haveDimensions) {
+          final page = _pageController.page ??
+              0.0; // Use 0.0 as the default value if it's null
+          value = index - page;
+          value = (value * 0.15).clamp(-1, 1);
+        }
+        return AnimatedOpacity(
+          duration: Duration(milliseconds: 350),
+          opacity: initialPage == index ? 1 : 0.4,
+          child: Transform.rotate(
+              angle: math.pi * value, child: CardMovie(movie: movies[index])),
+        );
+      });
 }
