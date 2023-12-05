@@ -24,7 +24,6 @@ class Ticket extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       child: Column(
         children: [
-          const SizedBox(height: 10),
           const Center(
             child: MovingCardWidget(),
           ),

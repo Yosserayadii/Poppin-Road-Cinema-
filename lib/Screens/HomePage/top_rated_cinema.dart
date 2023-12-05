@@ -1,29 +1,27 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
-import 'package:poppinroadcimema/Screens/Map/Map.dart';
 import 'package:poppinroadcimema/providers/CinemaProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:provider/provider.dart';
 
-class TopReatedCinma extends StatefulWidget {
+class TopRatedCinema extends StatefulWidget {
   @override
-  State createState() => _TopReatedCinmaState();
+  State createState() => _TopRatedCinemaState();
 }
 
-class _TopReatedCinmaState extends State<TopReatedCinma> {
+class _TopRatedCinemaState extends State<TopRatedCinema> {
   late final PageController pageController;
   final ScrollController _scrollController = ScrollController();
   int pageNo = 0;
 
-  Timer? carasouelTmer;
+  Timer? carouselTimer;
 
   Timer getTimer() {
     return Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (pageNo == 4) {
+      if (pageNo == 2) {
         pageNo = 0;
       }
       pageController.animateToPage(
@@ -38,14 +36,14 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
   @override
   void initState() {
     pageController = PageController(initialPage: 0, viewportFraction: 0.85);
-    carasouelTmer = getTimer();
+    carouselTimer = getTimer();
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-        showBtmAppBr = false;
+        showBottomAppBar = false;
         setState(() {});
       } else {
-        showBtmAppBr = true;
+        showBottomAppBar = true;
         setState(() {});
       }
     });
@@ -58,13 +56,19 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
     super.dispose();
   }
 
-  bool showBtmAppBr = true;
+  bool showBottomAppBar = true;
 
   @override
   Widget build(BuildContext context) {
-    // Use the provider to get the list of cinemas
     final cinemaProvider = Provider.of<CinemaProvider>(context);
     final cinemasData = cinemaProvider.cinemasData;
+
+    final filteredCinemas =
+        cinemasData.where((cinema) => cinema.rating! > 3).toList();
+
+    final topCinemas = filteredCinemas.length > 3
+        ? filteredCinemas.sublist(0, 3)
+        : filteredCinemas;
 
     return Column(
       children: [
@@ -75,7 +79,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
             child: Row(
               children: [
                 const Text(
-                  'Top rated Cinema !',
+                  'Top rated Cinema!',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Lottie.asset('assets/starsEmojy.json',
@@ -101,12 +105,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                       setState(() {});
                     },
                     itemBuilder: (_, index) {
-                      // Check if index is within bounds
-                      if (index < 0 || index >= cinemasData.length) {
-                        return Container(); // You can return an empty container or handle it as needed
-                      }
-
-                      final cinema = cinemasData[index];
+                      final cinema = topCinemas[index];
 
                       return AnimatedBuilder(
                         animation: pageController,
@@ -124,11 +123,11 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                             );
                           },
                           onPanDown: (d) {
-                            carasouelTmer?.cancel();
-                            carasouelTmer = null;
+                            carouselTimer?.cancel();
+                            carouselTimer = null;
                           },
                           onPanCancel: () {
-                            carasouelTmer = getTimer();
+                            carouselTimer = getTimer();
                           },
                           child: Container(
                             margin: const EdgeInsets.only(
@@ -142,8 +141,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                       .withOpacity(0.5),
                                   spreadRadius: -1,
                                   blurRadius: 10,
-                                  offset: const Offset(
-                                      5, 5), // changes position of shadow
+                                  offset: const Offset(5, 5),
                                 ),
                               ],
                             ),
@@ -187,51 +185,55 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                             decoration: ShapeDecoration(
                                               color: CustomColors.fifthColor,
                                               shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
                                             ),
                                           ),
                                           Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 10, left: 5, bottom: 10),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                      Icons
-                                                          .add_location_rounded,
-                                                      size: 12.0,
-                                                      color: Colors.white),
-                                                  Container(
-                                                    width: 150,
-                                                    child: Text(
-                                                      cinema.address?.substring(
-                                                              0, 30) ??
-                                                          '',
-                                                      style: TextStyle(
-                                                          fontSize: 13,
-                                                          fontWeight: FontWeight
-                                                              .normal),
+                                            padding: EdgeInsets.only(
+                                                top: 10, left: 5, bottom: 10),
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.add_location_rounded,
+                                                  size: 12.0,
+                                                  color: Colors.white,
+                                                ),
+                                                Container(
+                                                  width: 150,
+                                                  child: Text(
+                                                    cinema.address?.substring(
+                                                            0, 30) ??
+                                                        '',
+                                                    style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                     ),
-                                                  )
-                                                ],
-                                              )),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Row(children: [
+                                            Text("${cinema.rating}"),
+                                            Icon(
+                                              Icons.star,
+                                              size: 20,
+                                              color: Colors.yellow,
+                                            )
+                                          ]),
                                           Container(
                                             padding:
                                                 const EdgeInsets.only(top: 0.0),
                                             height: 25,
                                             width: 120,
                                             child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          MapWidget()),
-                                                );
-                                              },
+                                              onPressed: () {},
                                               child: const Text('Check in map'),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -243,7 +245,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                         ),
                       );
                     },
-                    itemCount: cinemasData.length,
+                    itemCount: topCinemas.length,
                   ),
                 ),
                 const SizedBox(
@@ -252,7 +254,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
-                    cinemasData.length,
+                    topCinemas.length,
                     (index) => GestureDetector(
                       child: Container(
                         margin: const EdgeInsets.all(2.0),
@@ -263,7 +265,8 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                 decoration: ShapeDecoration(
                                   color: CustomColors.fifthColor,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(100)),
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
                                 ),
                               )
                             : Icon(
