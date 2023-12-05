@@ -1,13 +1,13 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
-import 'package:poppinroadcimema/Models/Cinema.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
-import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
 import 'package:poppinroadcimema/Screens/Map/Map.dart';
-import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
+import 'package:poppinroadcimema/providers/CinemaProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:provider/provider.dart';
 
 class TopReatedCinma extends StatefulWidget {
   @override
@@ -62,6 +62,10 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
 
   @override
   Widget build(BuildContext context) {
+    // Use the provider to get the list of cinemas
+    final cinemaProvider = Provider.of<CinemaProvider>(context);
+    final cinemasData = cinemaProvider.cinemasData;
+
     return Column(
       children: [
         Align(
@@ -97,6 +101,13 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                       setState(() {});
                     },
                     itemBuilder: (_, index) {
+                      // Check if index is within bounds
+                      if (index < 0 || index >= cinemasData.length) {
+                        return Container(); // You can return an empty container or handle it as needed
+                      }
+
+                      final cinema = cinemasData[index];
+
                       return AnimatedBuilder(
                         animation: pageController,
                         builder: (ctx, child) {
@@ -104,12 +115,6 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                         },
                         child: GestureDetector(
                           onTap: () {
-                            /*  ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    "Hello yougggh tappgged at ${index + 1} "),
-                              ),
-                            ); */
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -131,13 +136,13 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                               color: const Color.fromARGB(255, 24, 41, 86),
                               boxShadow: [
                                 BoxShadow(
-                                    color: const Color.fromARGB(197, 50, 50, 68)
-                                        .withOpacity(0.5),
-                                    spreadRadius: -1,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        5, 5) // changes position of shadow
-                                    ),
+                                  color: const Color.fromARGB(197, 50, 50, 68)
+                                      .withOpacity(0.5),
+                                  spreadRadius: -1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      5, 5), // changes position of shadow
+                                ),
                               ],
                             ),
                             child: Row(
@@ -146,8 +151,8 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                   padding: const EdgeInsets.all(10),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(25),
-                                    child: Image.asset(
-                                      "${Cinemas.elementAt(index).image}",
+                                    child: Image.network(
+                                      "${cinema.image}",
                                       fit: BoxFit.cover,
                                       width: 120,
                                       height: 190,
@@ -166,8 +171,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                             padding: EdgeInsets.only(
                                                 top: 15, bottom: 9),
                                             child: Text(
-                                              Cinemas.elementAt(index).title ??
-                                                  '',
+                                              cinema.title ?? '',
                                               textAlign: TextAlign.start,
                                               softWrap: true,
                                               style: TextStyle(
@@ -198,10 +202,8 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                                   Container(
                                                     width: 150,
                                                     child: Text(
-                                                      Cinemas.elementAt(index)
-                                                              .address!
-                                                              .substring(
-                                                                  0, 30) ??
+                                                      cinema.address?.substring(
+                                                              0, 30) ??
                                                           '',
                                                       style: TextStyle(
                                                           fontSize: 13,
@@ -239,7 +241,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                         ),
                       );
                     },
-                    itemCount: 5,
+                    itemCount: cinemasData.length,
                   ),
                 ),
                 const SizedBox(
@@ -248,7 +250,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
-                    5,
+                    cinemasData.length,
                     (index) => GestureDetector(
                       child: Container(
                         margin: const EdgeInsets.all(2.0),
