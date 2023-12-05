@@ -29,6 +29,7 @@ class _SplashState extends State<Splash> {
   void animateImages() async {
     await Future.delayed(Duration(seconds: 1));
     setState(() {
+      
       imagePosition = 0.2;
     });
 
@@ -79,7 +80,7 @@ class _SplashState extends State<Splash> {
                 'assets/logo1.png',
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width * 0.2,
-                height: MediaQuery.of(context).size.height / 8,
+                height: MediaQuery.of(context).size.height / 8 ,
               ),
             ),
           ],
