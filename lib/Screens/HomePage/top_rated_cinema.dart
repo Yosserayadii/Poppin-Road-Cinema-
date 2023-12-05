@@ -5,8 +5,6 @@ import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/home_page.dart';
-import 'package:poppinroadcimema/Screens/Map/Map.dart';
-import 'package:poppinroadcimema/Screens/Map/MapScreen.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
 class TopReatedCinma extends StatefulWidget {
@@ -217,14 +215,7 @@ class _TopReatedCinmaState extends State<TopReatedCinma> {
                                             height: 25,
                                             width: 120,
                                             child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          MapWidget()),
-                                                );
-                                              },
+                                              onPressed: () {},
                                               child: const Text('Check in map'),
                                             ),
                                           )
