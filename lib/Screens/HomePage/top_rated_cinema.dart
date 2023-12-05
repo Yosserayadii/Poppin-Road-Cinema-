@@ -107,6 +107,8 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
                     },
                     itemBuilder: (_, index) {
                       final cinema = topCinemas[index];
+                      final movies =
+                          cinema.movies ?? []; // Ensure movies is not null
 
                       return AnimatedBuilder(
                         animation: pageController,
