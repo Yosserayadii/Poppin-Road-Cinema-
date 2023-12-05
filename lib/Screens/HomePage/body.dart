@@ -10,13 +10,12 @@ import '../../Models/Cinema.dart';
 
 class BodyHomePage extends StatelessWidget {
   const BodyHomePage({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      children: <Widget>[ TopRatedCinema(), JustForYou(), TopFilms()],
+      children: <Widget>[TopRatedCinema(), JustForYou(), TopFilms()],
     ));
   }
 }

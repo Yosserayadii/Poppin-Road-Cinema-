@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.dart';
 import 'package:poppinroadcimema/providers/CinemaProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
@@ -97,7 +98,7 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
                   height: 2.0,
                 ),
                 SizedBox(
-                  height: 190,
+                  height: 200,
                   child: PageView.builder(
                     controller: pageController,
                     onPageChanged: (index) {
@@ -106,6 +107,8 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
                     },
                     itemBuilder: (_, index) {
                       final cinema = topCinemas[index];
+                      final movies =
+                          cinema.movies ?? []; // Ensure movies is not null
 
                       return AnimatedBuilder(
                         animation: pageController,
@@ -117,9 +120,10 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MovieInterface(
-                                        selectedCinema: cinema,
-                                      )),
+                                builder: (context) => MovieInterface(
+                                  selectedCinema: cinema,
+                                ),
+                              ),
                             );
                           },
                           onPanDown: (d) {
@@ -192,16 +196,16 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
                                           ),
                                           Padding(
                                             padding: EdgeInsets.only(
-                                                top: 10, left: 5, bottom: 10),
+                                                top: 9, left: 5),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.add_location_rounded,
-                                                  size: 12.0,
+                                                  size: 10.0,
                                                   color: Colors.white,
                                                 ),
                                                 Container(
-                                                  width: 150,
+                                                  width: 155,
                                                   child: Text(
                                                     cinema.address?.substring(
                                                             0, 30) ??
