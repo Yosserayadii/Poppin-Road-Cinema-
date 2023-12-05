@@ -36,7 +36,7 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
 
   @override
   void initState() {
-    pageController = PageController(initialPage: 0, viewportFraction: 0.85);
+    pageController = PageController(initialPage: 1, viewportFraction: 0.85);
     carouselTimer = getTimer();
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
@@ -65,9 +65,9 @@ class _TopRatedCinemaState extends State<TopRatedCinema> {
     final cinemasData = cinemaProvider.cinemasData;
 
     final filteredCinemas =
-        cinemasData.where((cinema) => cinema.rating! > 3).toList();
+        cinemasData.where((cinema) => cinema.rating! >= 3).toList();
 
-    final topCinemas = filteredCinemas.length > 3
+    final topCinemas = filteredCinemas.length >= 3
         ? filteredCinemas.sublist(0, 3)
         : filteredCinemas;
 
