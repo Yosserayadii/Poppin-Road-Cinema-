@@ -6,7 +6,6 @@ import 'package:poppinroadcimema/Authentification/welcome.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
-
 class BackdropAndRating extends StatefulWidget {
   const BackdropAndRating({
     Key? key,
@@ -36,7 +35,8 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(widget.movie.backdrop),
+                image:
+                    AssetImage(widget.movie.backdrop ?? 'default_image.jpeg'),
               ),
             ),
           ),
@@ -164,8 +164,8 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
       ),
     );
   }
-
 }
+
 void _showRatingPopUp(BuildContext context) {
   showDialog(
     context: context,
@@ -194,4 +194,3 @@ void _showRatingPopUp(BuildContext context) {
     },
   );
 }
-

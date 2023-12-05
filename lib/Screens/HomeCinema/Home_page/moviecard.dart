@@ -11,7 +11,10 @@ class CardMovie extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => details_Screen(movie:movie))),
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => details_Screen(movie: movie))),
         child: Column(
           children: [
             Expanded(
@@ -26,20 +29,23 @@ class CardMovie extends StatelessWidget {
                     ),
                   ],
                   image: DecorationImage(
-                      fit: BoxFit.cover, image: AssetImage(movie.poster))),
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                          movie.poster ?? 'assets/default_poster.jpeg'))),
             )),
-            Padding(padding:EdgeInsets.symmetric(vertical : 10),
-            child: Text(
-              movie.title , 
-              style : Theme.of(context).textTheme.headline5
-            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                movie.title ?? 'Title Not Available',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(image: AssetImage("assets/star.png"),
-                height: 20,
-                
+                Image(
+                  image: AssetImage("assets/star.png"),
+                  height: 20,
                 ),
                 SizedBox(
                   width: 10,
@@ -48,8 +54,6 @@ class CardMovie extends StatelessWidget {
                   "${movie.rating}",
                   style: Theme.of(context).textTheme.bodyText2,
                 )
-        
-                
               ],
             )
           ],

@@ -22,7 +22,7 @@ class TitleAndDuration extends StatelessWidget {
             children: [
               Container(
                 alignment: Alignment.topLeft,
-                child: Text(movie.title,
+                child: Text(movie.title ?? "title not found",
                     style: Theme.of(context).textTheme.headlineMedium),
               ),
               SizedBox(

@@ -27,97 +27,98 @@ class MapBottomWidget extends StatelessWidget {
         itemCount: Cinemas.length,
         itemBuilder: (_, index) {
           final item = Cinemas[index];
-          return 
-          GestureDetector (
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => HomeCinema() )),
-
-            child: 
-          
-          Padding(
-            padding: const EdgeInsets.all(10.0), // Reduced the padding
-            child: Card(
-              elevation: 3, // Adjusted the elevation
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10), // Reduced the border radius
-              ),
-              child: Row(
-                children: [
-                  const SizedBox(width: 15), // Reduced the width
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 180,
-                              child: Text(
-                                item.title ?? '',
+          return GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeCinema()),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0), // Reduced the padding
+              child: Card(
+                elevation: 3, // Adjusted the elevation
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(10), // Reduced the border radius
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 15), // Reduced the width
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 180,
+                                child: Text(
+                                  item.title ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                FeatherIcons.star,
+                                color: Colors.orange,
+                                size: 14,
+                              ),
+                              Text(
+                                item.rating.toString(),
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.orange,
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              FeatherIcons.star,
-                              color: Colors.orange,
-                              size: 14,
-                            ),
-                            Text(
-                              item.rating.toString(),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.orange,
+                            ],
+                          ),
+                          Container(
+                            width: 27,
+                            height: 6,
+                            decoration: ShapeDecoration(
+                              color: CustomColors.fifthColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
-                          ],
-                        ),
-                        Container(
-                          width: 27,
-                          height: 6,
-                          decoration: ShapeDecoration(
-                            color: CustomColors.fifthColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
                           ),
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          item.address ?? '',
-                          style: const TextStyle(
-                            fontSize: 12, // Reduced the font size
-                            color: Colors.grey,
+                          const SizedBox(height: 15),
+                          Text(
+                            item.address ?? '',
+                            style: const TextStyle(
+                              fontSize: 12, // Reduced the font size
+                              color: Colors.grey,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(8), // Reduced the border radius
-                      child: Image.asset(
-                        item.image ?? '',
-                        fit: BoxFit.cover,
-                        height: 80, // Reduced the height
-                        width: 100, // Reduced the width
+                        ],
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 15),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            8), // Reduced the border radius
+                        child: Image.network(
+                          item.image ?? '',
+                          fit: BoxFit.cover,
+                          height: 80,
+                          width: 100, // Reduced the width
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                  ],
+                ),
               ),
             ),
-           ) );
-      },
+          );
+        },
       ),
     );
   }
