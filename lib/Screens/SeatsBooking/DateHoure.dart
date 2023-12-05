@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/DateAndTime.dart';
 import 'package:poppinroadcimema/Screens/ticket/ticket.dart';
-import 'package:poppinroadcimema/provider/PriceProvider.dart';
+import 'package:poppinroadcimema/providers/PriceProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
 import 'dart:math' as math;
 
@@ -223,13 +223,10 @@ class _DateHourWidgetState extends State<DateHourWidget> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-
-
-                      Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Ticket() ),
-                            );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Ticket()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: CustomColors.fifthColor,

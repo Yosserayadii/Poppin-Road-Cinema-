@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Chairs.dart';
-import 'package:poppinroadcimema/provider/PriceProvider.dart';
+import 'package:poppinroadcimema/providers/PriceProvider.dart';
 import 'package:provider/provider.dart';
 
 class SeatsScreen extends StatefulWidget {

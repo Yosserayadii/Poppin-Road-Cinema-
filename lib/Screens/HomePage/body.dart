@@ -16,7 +16,7 @@ class BodyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      children: <Widget>[ TopReatedCinma(), JustForYou(), TopFilms()],
+      children: <Widget>[ TopRatedCinema(), JustForYou(), TopFilms()],
     ));
   }
 }

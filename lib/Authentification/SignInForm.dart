@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
@@ -11,6 +13,7 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  Bool formShow = False;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,9 +82,13 @@ class _SignInFormState extends State<SignInForm> {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
+          GestureDetector(
+            child: Text("Don't have an accont ?"),
+            onTap: () {},
+          ),
           Divider(),
-          SizedBox(height: 30),
+          SizedBox(height: 20),
           ButtonBar(
             alignment: MainAxisAlignment.start,
             buttonMinWidth: 400,
