@@ -8,6 +8,7 @@ class CardMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print("movi fel movi ***** $movie");
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
@@ -30,7 +31,7 @@ class CardMovie extends StatelessWidget {
                   ],
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(
+                      image: NetworkImage(
                           movie.poster ?? 'assets/default_poster.jpeg'))),
             )),
             Padding(

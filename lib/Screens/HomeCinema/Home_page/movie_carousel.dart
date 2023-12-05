@@ -5,7 +5,8 @@ import 'dart:math' as math;
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/moviecard.dart';
 
 class MovieCaroussel extends StatefulWidget {
-  const MovieCaroussel({super.key});
+  final List<Movie> listMovies;
+  const MovieCaroussel({super.key, required this.listMovies});
 
   @override
   State<MovieCaroussel> createState() => _MovieCarousselState();
@@ -43,7 +44,7 @@ class _MovieCarousselState extends State<MovieCaroussel> {
             });
           },
           controller: _pageController,
-          itemCount: movies.length,
+          itemCount: widget.listMovies.length,
           itemBuilder: (context, index) => buildMovieSlider(index),
         ),
       ),
@@ -61,10 +62,11 @@ class _MovieCarousselState extends State<MovieCaroussel> {
           value = (value * 0.15).clamp(-1, 1);
         }
         return AnimatedOpacity(
-          duration: Duration(milliseconds: 350),
-          opacity: initialPage == index ? 1 : 0.4,
-          child: Transform.rotate(
-              angle: math.pi * value, child: CardMovie(movie: movies[index])),
-        );
+            duration: Duration(milliseconds: 350),
+            opacity: initialPage == index ? 1 : 0.4,
+            child: Transform.rotate(
+              angle: math.pi * value,
+              child: CardMovie(movie: widget.listMovies[index]),
+            ));
       });
 }
