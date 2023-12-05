@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,6 +24,8 @@ class _MapWidgetState extends State<MapWidget> {
   bool isLoading = true;
 
   late MapController mapController;
+  late DatabaseReference _databaseReference;
+  List<Cinema> cinemasData = [];
 
   @override
   void initState() {
@@ -30,6 +33,33 @@ class _MapWidgetState extends State<MapWidget> {
     mapController = MapController();
     // Initialize the map and start updating location periodically
     _updateCurrentLocation();
+
+    _databaseReference = FirebaseDatabase.instance.reference();
+    retrieveCinemasData();
+  }
+
+  Future<void> retrieveCinemasData() async {
+    DataSnapshot snapshot = await _databaseReference.child('cinemas').get();
+    if (snapshot.value != null && snapshot.value is List) {
+      final cinemasDataList = snapshot.value as List<dynamic>;
+      cinemasData = cinemasDataList.map((cinemaData) {
+        final cinemaMap = Map<String, dynamic>.from(cinemaData);
+
+        return Cinema(
+          image: cinemaMap['image'],
+          title: cinemaMap['title'],
+          address: cinemaMap['address'],
+          location: LatLng(
+            cinemaMap['location']['latitude'],
+            cinemaMap['location']['longitude'],
+          ),
+          rating: cinemaMap['rating'],
+        );
+      }).toList();
+    } else {
+      print("No data available from Firebase.");
+    }
+    setState(() {});
   }
 
   @override
@@ -143,11 +173,11 @@ class _MapWidgetState extends State<MapWidget> {
                     },
                   ),
                   // Markers for cinema locations
-                  for (int i = 0; i < Cinemas.length; i++)
+                  for (int i = 0; i < cinemasData.length; i++)
                     Marker(
                       height: 40,
                       width: 40,
-                      point: Cinemas[i].location ?? AppConstants.myLocation,
+                      point: cinemasData[i].location ?? AppConstants.myLocation,
                       builder: (_) {
                         return GestureDetector(
                           onTap: () {
@@ -182,7 +212,7 @@ class _MapWidgetState extends State<MapWidget> {
               child: CircularProgressIndicator(),
             ),
           // Widget at the bottom of the screen for additional functionality
-          MapBottomWidget(pageController: pageController, Cinemas: Cinemas),
+          MapBottomWidget(pageController: pageController, Cinemas: cinemasData),
         ],
       ),
     );

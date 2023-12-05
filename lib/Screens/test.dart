@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flare_flutter/base/actor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
+import 'package:poppinroadcimema/Models/MovieActor.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({Key? key}) : super(key: key);
@@ -24,55 +27,76 @@ class _TestScreenState extends State<TestScreen> {
   }
 
   Future<void> retrieveCinemasData() async {
-    DataSnapshot snapshot = await _databaseReference.child('cinemas').get();
-    if (snapshot.value != null && snapshot.value is List) {
-      final cinemasDataList = snapshot.value as List<dynamic>;
-      cinemasData = cinemasDataList.map((cinemaData) {
-        final cinemaMap = cinemaData as Map<String, dynamic>;
-        final moviesData =
-            (cinemaMap['movies'] as List<dynamic>?)?.map((movieData) {
-          final movieMap = movieData as Map<String, dynamic>;
-          return Movie(
-            poster: movieMap['poster'],
-            backdrop: movieMap['backdrop'],
-            title: movieMap['title'],
-            id: movieMap['id'],
-            plot: movieMap['plot'],
-            year: movieMap['year'],
-            numOfRatings: movieMap['numOfRatings'],
-            criticsReview: movieMap['criticsReview'],
-            metascoreRating: movieMap['metascoreRating'],
-            rating: movieMap['rating'],
-            genre: List<String>.from(movieMap['genre']),
-            cast: List<Map<String, dynamic>>.from(movieMap['cast']),
+    try {
+      DataSnapshot snapshot = await _databaseReference.child('cinemas').get();
+      if (snapshot.value != null && snapshot.value is List) {
+        final cinemasDataList = snapshot.value as List<dynamic>;
+        cinemasData = cinemasDataList.map((cinemaData) {
+          final cinemaMap = Map<String, dynamic>.from(cinemaData);
+          final moviesData =
+              (cinemaMap['movies'] as List<dynamic>?)?.map((movieData) {
+            final movieMap = Map<String, dynamic>.from(movieData);
+
+            // Debug prints to check movieMap and castItem
+            print("Movie Map: $movieMap");
+            final List<MovieActor>? castList =
+                (movieMap['cast'] as List<dynamic>?)?.map((castItem) {
+                      print("Cast Item: $castItem");
+                      return MovieActor(
+                        image: castItem['image'],
+                        movieName: castItem['movieName'],
+                        originalName: castItem['originalName'],
+                      );
+                    }).toList() ??
+                    [];
+
+            return Movie(
+              poster: movieMap['poster'],
+              backdrop: movieMap['backdrop'],
+              title: movieMap['title'],
+              id: movieMap['id'],
+              plot: movieMap['plot'],
+              year: movieMap['year'],
+              numOfRatings: movieMap['numOfRatings'],
+              criticsReview: movieMap['criticsReview'],
+              metascoreRating: movieMap['metascoreRating'],
+              rating: movieMap['rating'],
+              genre: List<String>.from(movieMap['genre']),
+              cast: castList,
+            );
+          }).toList();
+
+          return Cinema(
+            image: cinemaMap['image'],
+            title: cinemaMap['title'],
+            address: cinemaMap['address'],
+            location: LatLng(
+              cinemaMap['location']['latitude'],
+              cinemaMap['location']['longitude'],
+            ),
+            rating: cinemaMap['rating'],
+            movies: moviesData,
           );
         }).toList();
-        return Cinema(
-          image: cinemaMap['image'],
-          title: cinemaMap['title'],
-          address: cinemaMap['address'],
-          location: LatLng(
-            cinemaMap['location']['latitude'],
-            cinemaMap['location']['longitude'],
-          ),
-          rating: cinemaMap['rating'],
-          movies: moviesData,
-        );
-      }).toList();
+      } else {
+        print("No data available from Firebase.");
+      }
+      setState(() {});
+    } catch (error) {
+      print("Error: $error");
     }
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Cinema Data from Firebase'),
-        ),
-        body: Column(
-          children: [
-            Text("test"),
-            ListView.builder(
+      appBar: AppBar(
+        title: Text('Cinema Data from Firebase'),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
               itemCount: cinemasData.length,
               itemBuilder: (context, index) {
                 final cinema = cinemasData[index];
@@ -85,10 +109,26 @@ class _TestScreenState extends State<TestScreen> {
                     if (cinema.movies != null && cinema.movies!.isNotEmpty)
                       Column(
                         children: cinema.movies!.map((movie) {
-                          return ListTile(
-                            title: Text(movie.title ?? 'Title Not Available'),
-                            subtitle: Text(
-                                'Year: ${movie.year ?? 'Year Not Available'}'),
+                          return Column(
+                            children: [
+                              ListTile(
+                                title:
+                                    Text(movie.title ?? 'Title Not Available'),
+                                subtitle: Text(
+                                    'Year: ${movie.year ?? 'Year Not Available'}'),
+                              ),
+                              if (movie.cast != null && movie.cast!.isNotEmpty)
+                                Column(
+                                  children: movie.cast!.map((actor) {
+                                    return ListTile(
+                                      title: Text(actor.originalName ??
+                                          'Actor Name Not Available'),
+                                      subtitle: Text(
+                                          'Movie Name: ${actor.movieName ?? 'Movie Name Not Available'}'),
+                                    );
+                                  }).toList(),
+                                ),
+                            ],
                           );
                         }).toList(),
                       ),
@@ -96,8 +136,9 @@ class _TestScreenState extends State<TestScreen> {
                 );
               },
             ),
-            
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

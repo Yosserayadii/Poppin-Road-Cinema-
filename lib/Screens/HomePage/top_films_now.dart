@@ -43,17 +43,20 @@ class TopFilms extends StatelessWidget {
                           color: CustomColors.primaryColor),
                       child: Stack(children: [
                         ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
-                                bottomRight: Radius.circular(16),
-                                bottomLeft: Radius.circular(16)),
-                            child: Image.asset(
-                              movies.elementAt(index).poster,
-                              height: 170,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            )),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                            bottomRight: Radius.circular(16),
+                            bottomLeft: Radius.circular(16),
+                          ),
+                          child: Image.asset(
+                            movies.elementAt(index).poster ??
+                                'assets/default_poster.jpg',
+                            height: 170,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                        ),
                         Positioned(
                           bottom: 0,
                           right: 0,
@@ -79,12 +82,14 @@ class TopFilms extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      movies.elementAt(index).title,
+                                      movies.elementAt(index).title ??
+                                          'Title Not Available',
                                       style: TextStyle(
-                                          color: const Color.fromARGB(
-                                              255, 208, 211, 230),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold),
+                                        color: const Color.fromARGB(
+                                            255, 208, 211, 230),
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                     Padding(
                                         padding: EdgeInsets.only(left: 9),

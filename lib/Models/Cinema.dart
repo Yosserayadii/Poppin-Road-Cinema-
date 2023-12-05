@@ -7,7 +7,7 @@ class Cinema {
   final String? address;
   final LatLng? location;
   final int? rating;
-   final List<Movie>? movies;
+  final List<Movie>? movies;
 
   Cinema({
     required this.image,
@@ -15,7 +15,7 @@ class Cinema {
     required this.address,
     required this.location,
     required this.rating,
-    this.movies
+    this.movies,
   });
 }
 

@@ -9,39 +9,34 @@ import 'package:poppinroadcimema/Screens/HomeCinema/Movie_details/backdrop_ratin
 import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 class body_details extends StatelessWidget {
   final Movie movie;
   const body_details({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
-   
-    return 
-     
-       SingleChildScrollView(
-child: Column(children: [
-  Details_genre(movie: movie),
-      Padding(
-        padding: EdgeInsets.only(left: 15),
-        child: Container(
-          alignment: Alignment.topLeft,
-          child: Text(
-            "Plot Summary",
-            style: Theme.of(context).textTheme.headline5,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Details_genre(movie: movie),
+          Padding(
+            padding: EdgeInsets.only(left: 15),
+            child: Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Plot Summary",
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
           ),
-        ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(movie.plot ?? "movie plot not found"),
+          ),
+          CastAndCrew(casts: movie.cast ?? []),
+        ],
       ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Text(movie.plot),
-      ),
-      CastAndCrew(casts: movie.cast),
-],
-
-),
-
-       );
-    
-     
+    );
   }
 }
