@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:poppinroadcimema/Screens/ticket/qr_genreator.dart';
-import 'package:poppinroadcimema/Screens/ticket/zigzag.dart'; 
+import 'package:poppinroadcimema/Screens/ticket/zigzag.dart';
 import 'package:ticket_widget/ticket_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
+import 'package:share_plus/share_plus.dart';
 
 class TicketFront extends StatefulWidget {
   const TicketFront({super.key});
@@ -13,6 +20,7 @@ class TicketFront extends StatefulWidget {
 class _TicketFrontState extends State<TicketFront> {
   @override
   Widget build(BuildContext context) {
+    double _progress = 0.0;
     return Container(
         decoration: BoxDecoration(
           boxShadow: [
@@ -108,42 +116,57 @@ class _TicketFrontState extends State<TicketFront> {
                     SizedBox(
                       height: 15,
                     ),
-                   QrGeretor(),
+                    QrGeretor(),
                     SizedBox(
                       height: 15,
                     ),
-                    Positioned(
-                        bottom: 0,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 247, 1, 17),
-                            shadowColor: Color.fromARGB(0, 198, 219, 6),
-                            elevation: 50,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                          ),
-                          child: Container(
-                            height: 40,
-                            width: 150,
-                            child: Center(
-                              child: Text(
-                                'Downald',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 18),
-                              ),
-                            ),
-                          ),
-                        ))
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                              FileDownloader.downloadFile(
+                                url:
+                                    'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1.pdf?alt=media&token=e91adb29-1cf1-41fe-85f0-edbff65c473f',
+                                onDownloadCompleted: (String path) {
+                                  _showSnackBar(
+                                      "Your ticket has been saved successfully");
+                                },
+                              );
+                            },
+                            child: Icon(Icons.download)),
+                        ElevatedButton(
+                            onPressed: () async {
+                              final url = Uri.parse(
+                                  'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1.pdf?alt=media&token=e91adb29-1cf1-41fe-85f0-edbff65c473f');
+                              final response = await http.get(url);
+                              final bytes = response.bodyBytes;
+
+                              final temp = await getTemporaryDirectory();
+                              final path = '${temp.path}/image.pdf';
+                              File(path).writeAsBytesSync(bytes);
+
+                              await Share.shareFiles([path],
+                                  text:
+                                      'check out my website https://example.com');
+                            },
+                            child: Icon(Icons.share)),
+                      ],
+                    )
                   ],
                 ),
               ),
             ],
           )),
         ));
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
   }
 
   Widget ticketDetails(String title, String details) => Column(
@@ -161,8 +184,7 @@ class _TicketFrontState extends State<TicketFront> {
               height: 30,
               width: 60,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
               child: Text(
                 details,
                 style: TextStyle(
@@ -211,7 +233,7 @@ class _TicketFrontState extends State<TicketFront> {
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w800,
-                      color:                Color.fromARGB(255, 228, 228, 228),
+                      color: Color.fromARGB(255, 228, 228, 228),
                     ),
                   ),
                 );
