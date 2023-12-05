@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Models/User.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:poppinroadcimema/services/auth_services.dart';
 
@@ -174,8 +175,17 @@ class _SignInFormState extends State<SignInForm> {
             buttonMinWidth: 400,
             children: [
               ElevatedButton.icon(
-                onPressed: () {
-                  AuthService().signInWithGoogle();
+                onPressed: () async {
+                  Object? user = await AuthService().signInWithGoogle(context);
+
+                  if (user != null) {
+                    // Navigate back 2 or 3 contexts
+                    // Navigator.of(context).popUntil((route) => route. );
+                    var count = 0;
+                    Navigator.popUntil(context, (route) {
+                      return count++ == 2;
+                    });
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width - 40, 40),
