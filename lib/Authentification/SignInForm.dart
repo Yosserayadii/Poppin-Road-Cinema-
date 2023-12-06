@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Models/User.dart';
+import 'package:poppinroadcimema/providers/UserProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:poppinroadcimema/services/auth_services.dart';
+import 'package:provider/provider.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -11,9 +14,12 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
   bool showForm = false;
   @override
   Widget build(BuildContext context) {
+        UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return Container(
         padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -174,8 +180,18 @@ class _SignInFormState extends State<SignInForm> {
             buttonMinWidth: 400,
             children: [
               ElevatedButton.icon(
-                onPressed: () {
-                  AuthService().signInWithGoogle();
+                onPressed: () async {
+
+                  AuthService authService = AuthService( userProvider); // Replace userProvider with the actual instance of UserProvider
+                    await authService.signInWithGoogle(context);
+
+                  if (userProvider.user != null) {
+                    // Navigate back 2 or 3 contexts
+                    var count = 0;
+                    Navigator.popUntil(context, (route) {
+                      return count++ == 1;
+                    });
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width - 40, 40),
