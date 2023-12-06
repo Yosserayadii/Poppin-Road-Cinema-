@@ -27,7 +27,7 @@ class _MovieInterfaceState extends State<MovieInterface> {
       appBar: AppBar(title: Text(cinemaTitle)),
       body: Column(
         children: [
-          CategoryList(),
+          CategoryList(title: cinemaTitle),
           Genre(),
           MovieCaroussel(listMovies: listMovies),
         ],

@@ -15,9 +15,13 @@ class Cast_card extends StatelessWidget {
             Container(
               height: 80,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(cast.movieName ?? 'not found'))),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(cast.image ??
+                      'assets/placeholder_image.png'), // Adjust the placeholder image path
+                  fit: BoxFit.cover, // Adjust this as needed
+                ),
+              ),
             ),
             SizedBox(
               height: 10,

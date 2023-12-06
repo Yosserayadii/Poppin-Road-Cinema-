@@ -34,7 +34,7 @@ class body_details extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(movie.plot ?? "movie plot not found"),
           ),
-          CastAndCrew(casts: movie.cast ?? []),
+          CastAndCrew(),
         ],
       ),
     );
