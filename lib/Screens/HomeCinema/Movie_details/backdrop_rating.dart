@@ -4,7 +4,9 @@ import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/Authentification/signin.dart';
 import 'package:poppinroadcimema/Authentification/welcome.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
+import 'package:poppinroadcimema/providers/UserProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:provider/provider.dart';
 
 class BackdropAndRating extends StatefulWidget {
   const BackdropAndRating({
@@ -25,6 +27,8 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return Container(
       height: 300,
       child: Stack(
@@ -101,7 +105,11 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          _showRatingPopUp(context);
+                          if (userProvider.user == null) {
+                            _showRatingPopUpToLogin(context);
+                          } else {
+                            _showRatingPopUp(context);
+                          }
                         },
                         child: Lottie.asset(
                           'assets/animated_star.json',
@@ -167,6 +175,25 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
 }
 
 void _showRatingPopUp(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Thank you For Rating this Filme"),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Cancel"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void _showRatingPopUpToLogin(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
