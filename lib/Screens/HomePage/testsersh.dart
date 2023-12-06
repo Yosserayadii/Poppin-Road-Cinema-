@@ -11,26 +11,54 @@ class ReacherBar extends StatefulWidget {
 }
 
 class _ReacherBarState extends State<ReacherBar> {
-  List<dynamic> _foundMovies = []; // Change type to List<dynamic>
+  List<dynamic> _foundMovies = [];
 
   @override
   void initState() {
     super.initState();
-    _foundMovies = context.read<CinemaProvider>().cinemasData
-        .expand((cinema) => cinema.movies ?? []) // Flatten movies list
-        .toList();
+    _initializeMoviesList();
+  }
+
+  void _initializeMoviesList() {
+    final cinemaProvider = context.read<CinemaProvider>();
+
+    final uniqueMovies = <String, dynamic>{};
+
+    _foundMovies = cinemaProvider.cinemasData
+        .expand((cinema) => cinema.movies ?? [])
+        .where((movie) {
+      final title = movie.title?.toLowerCase();
+      if (title != null && !uniqueMovies.containsKey(title)) {
+        uniqueMovies[title] = movie;
+        return true;
+      }
+      return false;
+    }).toList();
   }
 
   void _runFilter(String enteredKeyword) {
     final cinemaProvider = context.read<CinemaProvider>();
     cinemaProvider.searchMovies(enteredKeyword);
 
+    final uniqueFilteredMovies = <String, dynamic>{};
+
     setState(() {
-      _foundMovies = cinemaProvider.filteredCinemas
-          .expand((cinema) => cinema.movies ?? []) // Flatten movies list
-          .where((movie) =>
-              movie.title?.toLowerCase().contains(enteredKeyword.toLowerCase()) ?? false)
-          .toList();
+    _foundMovies = cinemaProvider.filteredCinemas
+    .expand((cinema) => cinema.movies ?? [])
+    .where((movie) {
+  final title = movie.title?.toLowerCase();
+  final containsKeyword =
+      title?.contains(enteredKeyword.toLowerCase()) ?? false;
+
+  // Check for uniqueness based on the title
+  if (containsKeyword && !uniqueFilteredMovies.containsKey(title)) {
+    uniqueFilteredMovies[title] = movie;
+    return true;
+  }
+
+  return false;
+}).toList();
+
     });
   }
 
@@ -43,11 +71,14 @@ class _ReacherBarState extends State<ReacherBar> {
           children: [
             const SizedBox(
               height: 20,
+            ), 
+              const SizedBox(
+              height: 20,
             ),
             TextField(
               onChanged: (value) => _runFilter(value),
               decoration: const InputDecoration(
-                labelText: 'Search Movies', // Updated label
+                labelText: 'Search Movies',
                 suffixIcon: Icon(Icons.search),
               ),
             ),
@@ -59,19 +90,25 @@ class _ReacherBarState extends State<ReacherBar> {
                   ? ListView.builder(
                       itemCount: _foundMovies.length,
                       itemBuilder: (context, index) => Card(
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 24, 41, 86),
                         elevation: 4,
                         margin: const EdgeInsets.symmetric(vertical: 10),
                         child: ListTile(
+                          leading: Image.network(_foundMovies[index].poster),
                           title: Text(
                             _foundMovies[index].title.toString(),
                             style: TextStyle(color: Colors.white),
                           ),
-                          subtitle: Text(
-                            _foundMovies[index].toString(),
-                            style: TextStyle(color: Colors.white),
+                          subtitle: Row(
+                            children: [
+                              Icon(Icons.star),
+                              Text(
+                                _foundMovies[index].rating.toString(),
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255)),
+                              ),
+                            ],
                           ),
-                          // Add other Movie properties as needed
                         ),
                       ),
                     )

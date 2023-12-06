@@ -154,6 +154,8 @@ class _HomeState extends State<HomeCinema> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
+
+              
                 // Your content (e.g., MapWidget)
                 Container(
                   decoration: BoxDecoration(
