@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
+import 'package:poppinroadcimema/Models/MovieActor.dart';
 
 class CinemaProvider with ChangeNotifier {
   late DatabaseReference _databaseReference;
@@ -27,9 +28,21 @@ class CinemaProvider with ChangeNotifier {
           moviesList = moviesDataList.map((movieData) {
             final movieMap = Map<String, dynamic>.from(movieData);
 
+            final List<MovieActor>? castList =
+                (movieMap['cast'] as List<dynamic>?)?.map((castItem) {
+                      print("Cast Item: $castItem");
+                      return MovieActor(
+                        image: castItem['image'],
+                        movieName: castItem['movieName'],
+                        originalName: castItem['originalName'],
+                      );
+                    }).toList() ??
+                    [];
+            print("cast**** $castList");
+
             return Movie(
               backdrop: movieMap['backdrop'],
-              cast: [], // You might want to map the cast data as well
+              cast: castList, // You might want to map the cast data as well
               criticsReview: movieMap['criticsReview'],
               genre: List<String>.from(movieMap['genre']),
               id: movieMap['id'],
