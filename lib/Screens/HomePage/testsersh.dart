@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
-import 'package:poppinroadcimema/Models/Movie.dart'; // Import Movie model
 import 'package:poppinroadcimema/providers/CinemaProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -12,17 +11,14 @@ class ReacherBar extends StatefulWidget {
 }
 
 class _ReacherBarState extends State<ReacherBar> {
-  List<Movie> _foundMovies = []; // Change type to Movie
+  List<dynamic> _foundMovies = []; // Change type to List<dynamic>
 
-  @override
-  Widget build(BuildContext context) {
-     CinemaProvider cinemaProvider = Provider.of<CinemaProvider>(context);
   @override
   void initState() {
     super.initState();
-    _foundMovies = cinemaProvider.cinemasData.cast<Movie>(); 
- 
-       
+    _foundMovies = context.read<CinemaProvider>().cinemasData
+        .expand((cinema) => cinema.movies ?? []) // Flatten movies list
+        .toList();
   }
 
   void _runFilter(String enteredKeyword) {
@@ -38,6 +34,8 @@ class _ReacherBarState extends State<ReacherBar> {
     });
   }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -49,7 +47,7 @@ class _ReacherBarState extends State<ReacherBar> {
             TextField(
               onChanged: (value) => _runFilter(value),
               decoration: const InputDecoration(
-                labelText: 'Search Movies',
+                labelText: 'Search Movies', // Updated label
                 suffixIcon: Icon(Icons.search),
               ),
             ),
