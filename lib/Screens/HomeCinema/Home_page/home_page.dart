@@ -6,6 +6,7 @@ import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Movie_interface.da
 import 'package:poppinroadcimema/Screens/HomePage/home_cinema.dart';
 import 'package:poppinroadcimema/Screens/Map/Map.dart';
 import 'package:poppinroadcimema/Screens/chatbot/chat_screen1.dart';
+import 'package:poppinroadcimema/Screens/profile/Profile.dart';
 import 'package:poppinroadcimema/Screens/test.dart';
 
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
@@ -20,9 +21,10 @@ class homescreen extends StatefulWidget {
 class _homescreenState extends State<homescreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
+     Profile(),
     HomeCinema(),
     //MapWidget(),
-    TestScreen(),
+
     //Movie_interface(),
     chatHome(),
   ];
