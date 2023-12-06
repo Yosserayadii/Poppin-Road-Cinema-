@@ -3,15 +3,20 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/ticket/qr_genreator.dart';
 import 'package:poppinroadcimema/Screens/ticket/zigzag.dart';
+import 'package:poppinroadcimema/providers/PriceProvider.dart';
+import 'package:poppinroadcimema/providers/SelectedSeatsProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:share_plus/share_plus.dart';
 
 class TicketFront extends StatefulWidget {
-  const TicketFront({super.key});
+  final Movie movie;
+  const TicketFront({super.key, required this.movie});
 
   @override
   State<TicketFront> createState() => _TicketFrontState();
@@ -20,6 +25,17 @@ class TicketFront extends StatefulWidget {
 class _TicketFrontState extends State<TicketFront> {
   @override
   Widget build(BuildContext context) {
+    final seats =
+        Provider.of<SelectedSeatsProvider>(context).selectedSeatNumbers;
+    final test = Provider.of<SelectedSeatsProvider>(context);
+
+    final movie = widget.movie;
+    final priceProvider =
+        Provider.of<PriceProvider>(context); // Accédez à PriceProvider
+
+    // Utilisez priceProvider.totalPrice pour obtenir la valeur du prix
+    double totalPrice = priceProvider.totalPrice;
+
     double _progress = 0.0;
     return Container(
         decoration: BoxDecoration(
@@ -45,16 +61,21 @@ class _TicketFrontState extends State<TicketFront> {
                 child: Column(
                   children: [
                     ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset("assets/P16-17-pix-1-1.jpg",
-                            height: 150, width: 300, fit: BoxFit.cover)),
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        "${movie.backdrop}",
+                        height: 150,
+                        width: 300,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "The Fault in Our Stars",
+                        "${movie.title}",
                         style: TextStyle(
                             fontSize: 20,
                             color: Color.fromARGB(255, 228, 228, 228),
@@ -70,7 +91,7 @@ class _TicketFrontState extends State<TicketFront> {
                         Icon(Icons.location_on,
                             color: Color(0xFF049FB4), size: 18),
                         Text(
-                          "Pathy , Tunis City",
+                          "Pathé Tunis City",
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: Color(0xFF049FB4)),
@@ -94,7 +115,7 @@ class _TicketFrontState extends State<TicketFront> {
                                   color: Color.fromARGB(37, 4, 159, 180),
                                   borderRadius: BorderRadius.circular(30)),
                             ),
-                            ticketDetails("Price", "30 DT"),
+                            ticketDetails("Price", "$totalPrice DT"),
                             Container(
                               height: 55,
                               width: 1,
@@ -195,7 +216,7 @@ class _TicketFrontState extends State<TicketFront> {
         ],
       );
   List<String> seats = ['A1', 'A2', 'B1', 'B3'];
-
+// Widget seatsList({required List<String> list}) => Column(
   Widget seatsList() => Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

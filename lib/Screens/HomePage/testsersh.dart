@@ -16,7 +16,9 @@ class _ReacherBarState extends State<ReacherBar> {
   @override
   void initState() {
     super.initState();
-    _foundMovies = context.read<CinemaProvider>().cinemasData
+    _foundMovies = context
+        .read<CinemaProvider>()
+        .cinemasData
         .expand((cinema) => cinema.movies ?? []) // Flatten movies list
         .toList();
   }
@@ -29,7 +31,10 @@ class _ReacherBarState extends State<ReacherBar> {
       _foundMovies = cinemaProvider.filteredCinemas
           .expand((cinema) => cinema.movies ?? []) // Flatten movies list
           .where((movie) =>
-              movie.title?.toLowerCase().contains(enteredKeyword.toLowerCase()) ?? false)
+              movie.title
+                  ?.toLowerCase()
+                  .contains(enteredKeyword.toLowerCase()) ??
+              false)
           .toList();
     });
   }

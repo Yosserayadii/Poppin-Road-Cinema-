@@ -1,8 +1,10 @@
 import 'package:poppinroadcimema/Models/MovieActor.dart';
+import 'package:poppinroadcimema/Models/Seance.dart';
 
 class Movie {
   final String? backdrop;
   final List<MovieActor>? cast;
+  final List<Seance>? seance;
   final int? criticsReview;
   final List<String>? genre;
   final int? id;
@@ -25,7 +27,7 @@ class Movie {
     required this.plot,
     required this.poster,
     required this.rating,
-    // required this.seance,
+    required this.seance,
     required this.title,
     required this.year,
   });
@@ -36,6 +38,7 @@ class Movie {
         'cast: $cast, '
         'criticsReview: $criticsReview, '
         'genre: $genre, '
+        'seance: $seance'
         'id: $id, '
         'metascoreRating: $metascoreRating, '
         'numOfRatings: $numOfRatings, '
@@ -63,6 +66,7 @@ List<Movie> movies = [
     metascoreRating: 76,
     genre: ["Action", "Drama"],
     cast: [],
+    seance: [],
   ),
   Movie(
     id: 2,
@@ -78,6 +82,7 @@ List<Movie> movies = [
     metascoreRating: 76,
     genre: ["Action", "Biography", "Drama"],
     cast: [],
+    seance: [],
   ),
   Movie(
     id: 3, // Changed ID to 3
@@ -92,7 +97,7 @@ List<Movie> movies = [
     criticsReview: 50,
     metascoreRating: 79,
     genre: ["Action", "Drama"],
-    cast: [],
+    cast: [], seance: [],
   ),
   Movie(
     id: 3, // Changed ID to 3
@@ -107,6 +112,6 @@ List<Movie> movies = [
     criticsReview: 50,
     metascoreRating: 79,
     genre: ["Action", "Drama"],
-    cast: [],
+    cast: [], seance: [],
   ),
 ];

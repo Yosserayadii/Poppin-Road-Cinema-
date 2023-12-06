@@ -4,18 +4,17 @@ import 'package:latlong2/latlong.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Models/MovieActor.dart';
+import 'package:poppinroadcimema/Models/Seance.dart';
 
 class CinemaProvider with ChangeNotifier {
   late DatabaseReference _databaseReference;
   List<Cinema> cinemasData = [];
-  List<Cinema> filteredCinemas = []; // New list to store filtered cinemas
+  List<Cinema> filteredCinemas = [];
 
   CinemaProvider() {
     _databaseReference = FirebaseDatabase.instance.reference();
     _retrieveCinemasData();
   }
-  
-  
 
   Future<void> _retrieveCinemasData() async {
     DataSnapshot snapshot = await _databaseReference.child('cinemas').get();
@@ -24,7 +23,6 @@ class CinemaProvider with ChangeNotifier {
       List<Cinema> tempCinemasData = cinemasDataList.map((cinemaData) {
         final cinemaMap = Map<String, dynamic>.from(cinemaData);
 
-        // Fetch and map movies data for each cinema
         List<Movie>? moviesList = [];
         if (cinemaMap['movies'] != null && cinemaMap['movies'] is List) {
           final moviesDataList = cinemaMap['movies'] as List<dynamic>;
@@ -33,7 +31,6 @@ class CinemaProvider with ChangeNotifier {
 
             final List<MovieActor>? castList =
                 (movieMap['cast'] as List<dynamic>?)?.map((castItem) {
-                      print("Cast Item: $castItem");
                       return MovieActor(
                         image: castItem['image'],
                         movieName: castItem['movieName'],
@@ -41,11 +38,48 @@ class CinemaProvider with ChangeNotifier {
                       );
                     }).toList() ??
                     [];
-            print("cast**** $castList");
+
+            final List<Seance>? seanceList =
+                (movieMap['seance'] as List<dynamic>?)?.map((seanceData) {
+                      final seanceMap = Map<String, dynamic>.from(seanceData);
+
+                      final List<Seat>? seatsList =
+                          (seanceMap['seats'] as List<dynamic>?)
+                                  ?.map((seatData) {
+                                return Seat(
+                                  available: seatData['avalible'],
+                                  ref: seatData['ref'],
+                                );
+                              })?.toList() ??
+                              [];
+
+                      final List<Booking>? bookingsList =
+                          (seanceMap['Booking'] as List<dynamic>?)
+                                  ?.map((bookingData) {
+                                final bookingMap =
+                                    Map<String, dynamic>.from(bookingData);
+
+                                return Booking(
+                                  date: bookingMap['Date'],
+                                  email: bookingMap['email'],
+                                  seats: List<String>.from(bookingMap['seats']),
+                                  tel: bookingMap['tel'],
+                                );
+                              })?.toList() ??
+                              [];
+
+                      return Seance(
+                        ref: seanceMap['ref'],
+                        salle: seanceMap['salle'],
+                        seats: seatsList,
+                        bookings: bookingsList,
+                      );
+                    })?.toList() ??
+                    [];
 
             return Movie(
               backdrop: movieMap['backdrop'],
-              cast: castList, // You might want to map the cast data as well
+              cast: castList,
               criticsReview: movieMap['criticsReview'],
               genre: List<String>.from(movieMap['genre']),
               id: movieMap['id'],
@@ -56,6 +90,7 @@ class CinemaProvider with ChangeNotifier {
               rating: movieMap['rating'],
               title: movieMap['title'],
               year: movieMap['year'],
+              seance: seanceList,
             );
           }).toList();
         }
@@ -73,7 +108,6 @@ class CinemaProvider with ChangeNotifier {
         );
       }).toList();
 
-      // Use addAll to add all mapped cinemas to the existing list
       cinemasData.addAll(tempCinemasData);
     } else {
       print("No data available from Firebase.");
@@ -81,13 +115,10 @@ class CinemaProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-   void searchCinemas(String keyword) {
+  void searchCinemas(String keyword) {
     if (keyword.isEmpty) {
-      // If the search keyword is empty, show all cinemas
       filteredCinemas = List.from(cinemasData);
     } else {
-      // If the search keyword is not empty, filter cinemas based on the keyword
       filteredCinemas = cinemasData
           .where((cinema) =>
               cinema.title!.toLowerCase().contains(keyword.toLowerCase()))
@@ -97,23 +128,19 @@ class CinemaProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   void searchMovies(String keyword) {
-  if (keyword.isEmpty) {
-    // If the search keyword is empty, show all movies from all cinemas
-    filteredCinemas = List.from(cinemasData);
-  } else {
-    // If the search keyword is not empty, filter movies based on the keyword
-    filteredCinemas = cinemasData
-        .where((cinema) =>
-            cinema.movies?.any((movie) =>
-                movie.title?.toLowerCase().contains(keyword.toLowerCase()) ?? false) ??
-            false)
-        .toList();
+    if (keyword.isEmpty) {
+      filteredCinemas = List.from(cinemasData);
+    } else {
+      filteredCinemas = cinemasData
+          .where((cinema) =>
+              cinema.movies?.any((movie) =>
+                  movie.title?.toLowerCase().contains(keyword.toLowerCase()) ??
+                  false) ??
+              false)
+          .toList();
+    }
+
+    notifyListeners();
   }
-
-  notifyListeners();
-}
-
-
 }

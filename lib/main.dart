@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/providers/CinemaProvider.dart';
+import 'package:poppinroadcimema/providers/SelectedSeatsProvider.dart';
 import 'package:poppinroadcimema/providers/UserProvider.dart';
 import 'package:poppinroadcimema/providers/models_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,8 +19,9 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => PriceProvider()),
         ChangeNotifierProvider(create: (context) => CinemaProvider()),
-        ChangeNotifierProvider(create: (_) =>  UserProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => ModelsProvider()),
+        ChangeNotifierProvider(create: (_) => SelectedSeatsProvider()),
       ],
       child: MyApp(),
     ),

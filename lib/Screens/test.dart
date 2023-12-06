@@ -38,10 +38,8 @@ class _TestScreenState extends State<TestScreen> {
             final movieMap = Map<String, dynamic>.from(movieData);
 
             // Debug prints to check movieMap and castItem
-            print("Movie Map: $movieMap");
             final List<MovieActor>? castList =
                 (movieMap['cast'] as List<dynamic>?)?.map((castItem) {
-                      print("Cast Item: $castItem");
                       return MovieActor(
                         image: castItem['image'],
                         movieName: castItem['movieName'],
@@ -49,8 +47,6 @@ class _TestScreenState extends State<TestScreen> {
                       );
                     }).toList() ??
                     [];
-
-            print("*****cast = $castList");
 
             return Movie(
               poster: movieMap['poster'],
@@ -65,6 +61,7 @@ class _TestScreenState extends State<TestScreen> {
               rating: movieMap['rating'],
               genre: List<String>.from(movieMap['genre']),
               cast: castList,
+              seance: [],
             );
           }).toList();
 

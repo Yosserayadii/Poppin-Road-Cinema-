@@ -6,11 +6,17 @@ class Chair {
   int status;
   double price;
 
-  Chair(
-      {required this.row,
-      required this.column,
-      required this.status,
-      required this.price});
+  Chair({
+    required this.row,
+    required this.column,
+    required this.status,
+    required this.price,
+  });
+
+  @override
+  String toString() {
+    return 'Chair{row: $row, column: $column, status: $status, price: $price}';
+  }
 }
 
 List<List<Chair>> generateChairsMatrix(int columns, int rows) {
@@ -22,15 +28,21 @@ List<List<Chair>> generateChairsMatrix(int columns, int rows) {
     for (int j = 0; j < columns; j++) {
       String alphabetRow = String.fromCharCode('A'.codeUnitAt(0) + i);
       row.add(Chair(
-          row: alphabetRow,
-          column: j + 1,
-          status: random.nextInt(2),
-          // Generate a random double between 20.0 and 100.0 with increments of 0.5
-          price: (20.0 + random.nextInt(61) * 0.5)));
+        row: alphabetRow,
+        column: j + 1,
+        status: random.nextInt(2),
+        price: 30,
+      ));
     }
 
     matrix.add(row);
   }
 
   return matrix;
+}
+
+void main() {
+  // Example usage:
+  List<List<Chair>> chairsMatrix = generateChairsMatrix(5, 4);
+  print("Matrix: $chairsMatrix");
 }

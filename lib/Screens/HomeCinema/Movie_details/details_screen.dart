@@ -37,7 +37,8 @@ class details_Screen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SeatsBooking()),
+                      MaterialPageRoute(
+                          builder: (context) => SeatsBooking(movie: movie)),
                     );
                   },
                 ),
