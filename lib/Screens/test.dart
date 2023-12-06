@@ -50,6 +50,8 @@ class _TestScreenState extends State<TestScreen> {
                     }).toList() ??
                     [];
 
+            print("*****cast = $castList");
+
             return Movie(
               poster: movieMap['poster'],
               backdrop: movieMap['backdrop'],

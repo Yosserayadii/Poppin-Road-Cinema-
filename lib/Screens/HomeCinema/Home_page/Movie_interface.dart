@@ -21,7 +21,7 @@ class _MovieInterfaceState extends State<MovieInterface> {
     final cinemaTitle = widget.selectedCinema.title ?? 'Unknown Cinema';
     // print('Selected Cinema Data: ${widget.selectedCinema.movies}');
     final List<Movie> listMovies = widget.selectedCinema.movies ?? [];
-    // print('Data...333: ${movies[0].title}');
+    //print('Data...333: ${movies[0]}');
 
     return Scaffold(
       appBar: AppBar(title: Text(cinemaTitle)),

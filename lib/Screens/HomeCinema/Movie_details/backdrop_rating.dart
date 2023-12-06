@@ -40,7 +40,7 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image:
-                    AssetImage(widget.movie.backdrop ?? 'default_image.jpeg'),
+                    NetworkImage(widget.movie.backdrop ?? 'default_image.jpeg'),
               ),
             ),
           ),
