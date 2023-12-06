@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/Cinema.dart';
+import 'package:poppinroadcimema/Screens/HomeCinema/Movie_details/details_screen.dart';
 import 'package:poppinroadcimema/providers/CinemaProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -89,7 +90,16 @@ class _ReacherBarState extends State<ReacherBar> {
               child: _foundMovies.isNotEmpty
                   ? ListView.builder(
                       itemCount: _foundMovies.length,
-                      itemBuilder: (context, index) => Card(
+                      itemBuilder: (context, index) =>
+                      
+                       GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => details_Screen(
+                                movie:  _foundMovies[index] ))),
+                    child:
+                       Card(
                         color: Color.fromARGB(255, 24, 41, 86),
                         elevation: 4,
                         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -111,7 +121,7 @@ class _ReacherBarState extends State<ReacherBar> {
                           ),
                         ),
                       ),
-                    )
+                        ) )
                   : const Text(
                       'No results found',
                       style: TextStyle(fontSize: 24),
