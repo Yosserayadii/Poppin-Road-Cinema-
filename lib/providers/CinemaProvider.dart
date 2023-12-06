@@ -8,11 +8,14 @@ import 'package:poppinroadcimema/Models/MovieActor.dart';
 class CinemaProvider with ChangeNotifier {
   late DatabaseReference _databaseReference;
   List<Cinema> cinemasData = [];
+  List<Cinema> filteredCinemas = []; // New list to store filtered cinemas
 
   CinemaProvider() {
     _databaseReference = FirebaseDatabase.instance.reference();
     _retrieveCinemasData();
   }
+  
+  
 
   Future<void> _retrieveCinemasData() async {
     DataSnapshot snapshot = await _databaseReference.child('cinemas').get();
@@ -77,4 +80,40 @@ class CinemaProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+
+   void searchCinemas(String keyword) {
+    if (keyword.isEmpty) {
+      // If the search keyword is empty, show all cinemas
+      filteredCinemas = List.from(cinemasData);
+    } else {
+      // If the search keyword is not empty, filter cinemas based on the keyword
+      filteredCinemas = cinemasData
+          .where((cinema) =>
+              cinema.title!.toLowerCase().contains(keyword.toLowerCase()))
+          .toList();
+    }
+
+    notifyListeners();
+  }
+
+
+  void searchMovies(String keyword) {
+  if (keyword.isEmpty) {
+    // If the search keyword is empty, show all movies from all cinemas
+    filteredCinemas = List.from(cinemasData);
+  } else {
+    // If the search keyword is not empty, filter movies based on the keyword
+    filteredCinemas = cinemasData
+        .where((cinema) =>
+            cinema.movies?.any((movie) =>
+                movie.title?.toLowerCase().contains(keyword.toLowerCase()) ?? false) ??
+            false)
+        .toList();
+  }
+
+  notifyListeners();
+}
+
+
 }
