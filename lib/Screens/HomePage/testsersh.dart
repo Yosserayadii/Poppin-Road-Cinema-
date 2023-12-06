@@ -67,6 +67,10 @@ class _ReacherBarState extends State<ReacherBar> {
                             _foundMovies[index].title.toString(),
                             style: TextStyle(color: Colors.white),
                           ),
+                          subtitle: Text(
+                            _foundMovies[index].toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
                           // Add other Movie properties as needed
                         ),
                       ),
