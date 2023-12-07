@@ -1,0 +1,14 @@
+{
+    "type": "service_account",
+    "project_id": "coffe-hub-nnfb",
+    "private_key_id": "ae257c1adc86d80f2ab532c3dcdb6d03cd27febe",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtw4ZBkx27aMm9\n2vo1c+/jGHVX0gZAASbt3RDlIVl0OM9VvTUlrgsAY4b47HYgJoU0FxLprXiYgr8z\nklkL8Wnq+BaT7J7CVmh9q8RZ5HBhTMvSyXhCgFisuI9J8X+3eIfU7ID0ZkS8BC9R\nwdOu5EvL5BjmHitwARnSeGQByEyBVc2UnXqx+yRyhbVYnAVMhQ09l0tMiHwGHKSU\npoV8Wlb3Mo5H8YC53oAUk72Aimvrm2u2LBoAnolAUqiwkSEhsILU1fOti3oP9E4r\ncvmVB0mP499xPIvGsDXJF1mNlbkdzf2yHMPN0Jd5Iv/ByJeaVA757gbFJUPWzbLl\nYhjGCrYHAgMBAAECggEAQN4QlRNIEqnUQklohaLhxzvetmmjxqoHb93KjFcOT2pT\n0FShbg8ScVM2VF/l2yu2J1ODznNhZUHOAgEct+4oFb0GpLM9MxxRxrRkSRCT+WbT\nYj2u5NiIAfamGzsJ7CKVRqIBo/s3pp7DUXiTvyLfvt5Ig0N5AMeQbbde0iGFmfQi\nG9Zp2bNUc3zt8V/X9TCxLShKDTmnJR+vFCToO4rOCFsMgSCcltwcINAsa2c/zkbv\n3C9+oYk/Ob6XtvjLnSvDVXZxjROTU1+lw19aWCFQuY/+YuFOI3w2nEskcyZ+zNPY\nphEYPxNjrjsY515SuX1uBFV6aZDg2m4fP/Ae9DglkQKBgQDWeQ73l/p2h6PT/UcP\ngtSeWdVi69dJbDy/HpGOatFoUYtiG+kUjn2jIWhX246zX+t7SFFVuOZ2zl115NJl\n5JrINvLx2tHniOumcO/GHg33W02Yj/WvSR8qXl72hp9JmSh7mgTmSxqWNuW5Hu+k\nWsmHd8vNwpEU54IRkaTLwAqtkQKBgQDPaJsjzVafGlDL4HbFJvNho5LJlTUZcCxa\nQlAUxofVLpSQdaozIyQvI09WZI5yNVKMkT/lLCoDkNqUQ8OEhNtWDt770m46u3Jj\nvDIpm6x4zVbaAvfMGe1q0dkVWMS+c/nt/zE4hwVFJWSqSE11GtfghTh0nGXLFjXS\naWlB6Ew+FwKBgDpxxM1dwef48ID9PRcR/OSl8EtDn2gnsaoXJ20a2LPHvObgWjS6\n26vPl8KRVyK0WdQ/kcJ9X3gypi9RSrBvimpS5wNXMOoaWrUBg6WGXSHx5IRVfork\nrzR5gQFHEDMbJHgCMaGcB8O1dAZtUrqD7vUWhRguFCERMVWeTb0kOQSxAoGBAIc1\nNyWQv646dn9h1atSaAi3nIJC/XmW0aMJZbEVdwk3M2w0+H4bo4QDLb4xEVdMgYLX\nUWLxdnYaoRNUVYn3HhEs4pohJPCur7Rqw/yx2i5qFftLQgTQxiADqtOqqZ9KdZx7\n5rdl9b6M0OHc/nmfxSk9T39dUVKiKPYA97gaWlGDAoGAB+/fPYWtpGK0WJIucJfp\nDPgck9V1/WLzGu+zrY8GltzbNSlKY/f95WiSHW/7hGkuiM8ueXaQ1+5wvZZoaUZp\noezb9iWnPCHJwS3FSQysAG7B4sskt6G44rmNqMl894mLBJrRYhMMt4EiQL3fUv8r\n8N318qYr72rbpMJZY58hYjo=\n-----END PRIVATE KEY-----\n",
+    "client_email": "poppinroadcinema@coffe-hub-nnfb.iam.gserviceaccount.com",
+    "client_id": "101465705313682747249",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/poppinroadcinema%40coffe-hub-nnfb.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+  
