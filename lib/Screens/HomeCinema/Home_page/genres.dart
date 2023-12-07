@@ -48,8 +48,8 @@ class Genre extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 _buildGenreContainer(
-                  icon: 'assets/tongue.png',
-                  text: 'Drama',
+                  icon: 'assets/tragedy.png',
+                  text: 'Tragedy',
                   color: CustomColors.secondaryColor,
                   containerSize: containerSize,
                   iconSize: iconSize,
