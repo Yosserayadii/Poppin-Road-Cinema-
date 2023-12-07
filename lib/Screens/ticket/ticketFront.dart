@@ -148,7 +148,7 @@ class _TicketFrontState extends State<TicketFront> {
                             onPressed: () {
                               FileDownloader.downloadFile(
                                 url:
-                                    'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1.pdf?alt=media&token=e91adb29-1cf1-41fe-85f0-edbff65c473f',
+                                    'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1(1).pdf?alt=media&token=4a1ed8a2-6766-449a-890a-f2b2ce29a093',
                                 onDownloadCompleted: (String path) {
                                   _showSnackBar(
                                       "Your ticket has been saved successfully");
@@ -159,7 +159,7 @@ class _TicketFrontState extends State<TicketFront> {
                         ElevatedButton(
                             onPressed: () async {
                               final url = Uri.parse(
-                                  'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1.pdf?alt=media&token=e91adb29-1cf1-41fe-85f0-edbff65c473f');
+                                  'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1(1).pdf?alt=media&token=4a1ed8a2-6766-449a-890a-f2b2ce29a093');
                               final response = await http.get(url);
                               final bytes = response.bodyBytes;
 

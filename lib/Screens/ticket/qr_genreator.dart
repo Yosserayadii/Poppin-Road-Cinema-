@@ -11,7 +11,7 @@ class QrGeretor extends StatelessWidget {
       // painter: Painter(),
       painter: QrPainter(
           data:
-              'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1.pdf?alt=media&token=e91adb29-1cf1-41fe-85f0-edbff65c473f',
+              'https://firebasestorage.googleapis.com/v0/b/test-54e68.appspot.com/o/tickets%2FDocument1(1).pdf?alt=media&token=4a1ed8a2-6766-449a-890a-f2b2ce29a093',
           options: QrOptions(
               shapes: QrShapes(
                   darkPixel: QrPixelShapeRoundCorners(cornerFraction: 5),
