@@ -26,8 +26,7 @@ class _ProfileState extends State<Profile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            userProvider.user == null
-                ? Padding(
+            if (userProvider.user == null) Padding(
                     padding: EdgeInsets.all(50),
                     child: ElevatedButton(
                       onPressed: () {
@@ -42,8 +41,7 @@ class _ProfileState extends State<Profile> {
                         "You must be connected to access the profile",
                       ),
                     ),
-                  )
-                : Column(
+                  ) else Column(
                     children: [
                       Container(
                         height: 30,
