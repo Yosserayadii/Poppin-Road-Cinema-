@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile> {
                         );
                       },
                       child: Text(
-                        "You must be connected to access the profile",
+                        "You must be connected to access the profile .",
                       ),
                     ),
                   ) else Column(
