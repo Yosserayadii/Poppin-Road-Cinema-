@@ -58,6 +58,11 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    repositories {
+        google()
+        jcenter()
+        // Add any other repositories you need
+    }
 }
 
 flutter {

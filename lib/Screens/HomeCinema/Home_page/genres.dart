@@ -135,7 +135,7 @@ class _GenreState extends State<Genre> {
                         child: Center(
                           child: Image.asset('assets/tongue.png',
                               width:
-                                  25, // Adjust the width of the image as needed
+                                  25, 
                               height: 25),
                         ),
                       ),
@@ -145,7 +145,7 @@ class _GenreState extends State<Genre> {
                             color: Color.fromARGB(255, 187, 187, 187)
                                 .withOpacity(0.5),
                             fontWeight: FontWeight.bold
-                            // Add other text styles like fontSize, fontWeight, etc. as needed
+                           
                             ),
                       )
                     ],

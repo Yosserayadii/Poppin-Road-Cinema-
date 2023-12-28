@@ -8,7 +8,6 @@ import 'package:poppinroadcimema/Screens/chatbot/chat_screen1.dart';
 
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 
-
 class homescreen extends StatefulWidget {
   const homescreen({super.key});
 
@@ -19,6 +18,7 @@ class homescreen extends StatefulWidget {
 class _homescreenState extends State<homescreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
+    HomeCinema(),
     Movie_interface(),
     chatHome(),
     HomeCinema(),
@@ -30,8 +30,7 @@ class _homescreenState extends State<homescreen> {
       body: _pages[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: CustomColors.primaryColor,
-        color: Color.fromRGBO(49, 54, 77,
-                              0.486),
+        color: Color.fromRGBO(49, 54, 77, 0.486),
         animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {
@@ -39,14 +38,17 @@ class _homescreenState extends State<homescreen> {
           });
         },
         items: [
-          Icon(FeatherIcons.home, 
-           color: CustomColors.textColor,
+          Icon(
+            FeatherIcons.home,
+            color: CustomColors.textColor,
           ),
-          Icon(FeatherIcons.map , 
-          color: CustomColors.textColor,
+          Icon(
+            FeatherIcons.map,
+            color: CustomColors.textColor,
           ),
-          Icon(FeatherIcons.film , 
-          color: CustomColors.textColor,
+          Icon(
+            FeatherIcons.film,
+            color: CustomColors.textColor,
           ),
         ],
       ),

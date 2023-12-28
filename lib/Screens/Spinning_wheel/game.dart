@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+import 'package:poppinroadcimema/Models/User.dart';
+import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:confetti/confetti.dart';
@@ -24,7 +26,8 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
   @override
   void initState() {
     super.initState();
-    _confettiController = ConfettiController(duration: const Duration(seconds: 2));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 2));
     checkLastSpinTime();
   }
 
@@ -60,7 +63,7 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
         isSpinning = true;
       });
       selected.add(Fortune.randomInt(0, items.length));
-      await Future.delayed(const Duration(seconds: 2)); 
+      await Future.delayed(const Duration(seconds: 2));
       setState(() {
         rewards = items[selected.value];
         ScaffoldMessenger.of(context).showSnackBar(
@@ -79,10 +82,53 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Spin and Win "),
+        titleSpacing: 00.0,
+        centerTitle: true,
+        toolbarHeight: 60.2,
+        toolbarOpacity: 0.8,
+      ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.all(50),
+                    child: Text.rich(TextSpan(children: <TextSpan>[
+                      TextSpan(
+                          text: 'Score : ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            height: 1.5,
+                            fontSize: 20,
+                          )),
+                      TextSpan(
+                          text:  ( user.score + rewards ).toString() ??  ''  ,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: CustomColors.fifthColor,
+                              fontStyle: FontStyle.italic)),
+                    ]))),
+                Padding(
+                  padding: EdgeInsets.only(left: 50),
+                  child: Text(
+                    canSpin
+                        ? "Ready to spin!"
+                        : "Time left: ${formatTime(timeLeft)}",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.blue,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Container(height: 50,),
             SizedBox(
               height: 300,
               child: Stack(
@@ -112,7 +158,7 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                     ),
                     child: FortuneWheel(
                       selected: selected.stream,
-                      animateFirst: isSpinning, 
+                      animateFirst: isSpinning,
                       items: [
                         for (int i = 0; i < items.length; i++) ...<FortuneItem>[
                           FortuneItem(
@@ -131,13 +177,11 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                           )
                         ]
                       ],
-                      onAnimationEnd: () {
-                       
-                      },
+                      onAnimationEnd: () {},
                     ),
                   ),
                   TextButton(
-                    onPressed: startSpin, 
+                    onPressed: startSpin,
                     child: Text(
                       "SPIN",
                       style: TextStyle(
@@ -146,7 +190,8 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
                       ),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith((states) {
+                      backgroundColor:
+                          MaterialStateProperty.resolveWith((states) {
                         if (states.contains(MaterialState.disabled)) {
                           return Colors.grey;
                         }
@@ -165,12 +210,48 @@ class _Spinning_wheelState extends State<Spinning_wheel> {
             SizedBox(
               height: 100,
             ),
-            Text(
-              canSpin ? "Ready to spin!" : "Time left: ${formatTime(timeLeft)}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.blue,
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 30,
+                right: 20,
+                left: 20,
+              ),
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: 'Spin to win!',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          height: 1.5,
+                        )),
+                    TextSpan(
+                      text: " Rack up  and",
+                    ),
+                    TextSpan(
+                        text: " 1000 points",
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          height: 1.5,
+                        )),
+                    TextSpan(
+                      text: " and score a",
+                    ),
+                    TextSpan(
+                        text: " FREE TICKET",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            height: 1.5,
+                            color: CustomColors.fifthColor)),
+                    TextSpan(text: ".Your victory is just a spin away—"),
+                    TextSpan(
+                        text: "don't miss out! ",
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          height: 1.5,
+                        )),
+                  ],
+                ),
               ),
             ),
           ],
