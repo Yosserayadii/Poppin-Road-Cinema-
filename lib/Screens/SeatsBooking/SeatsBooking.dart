@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/SeatsBooking/CinemaScreenWidget.dart';
 
 class SeatsBooking extends StatelessWidget {
-  const SeatsBooking({super.key});
+  final Movie movie;
+  const SeatsBooking({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class SeatsBooking extends StatelessWidget {
         toolbarHeight: 60.2,
         toolbarOpacity: 0.8,
       ),
-      body: CinemaScreenWidget(),
+      body: CinemaScreenWidget(movie: movie),
     );
   }
 }

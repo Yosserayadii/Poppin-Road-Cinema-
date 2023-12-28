@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Models/User.dart';
+import 'package:poppinroadcimema/providers/UserProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:poppinroadcimema/services/auth_services.dart';
+import 'package:provider/provider.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -10,9 +14,12 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  
+  bool showForm = false;
   @override
   Widget build(BuildContext context) {
+        UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return Container(
         padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -28,66 +35,164 @@ class _SignInFormState extends State<SignInForm> {
             "please sign in and start the adventure ",
             style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
           ),
-          Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your email',
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  obscureText: true,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your password',
-                  ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pop(context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize:
-                          Size(MediaQuery.of(context).size.width - 40, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
+          if (showForm)
+            Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your Full Name',
                     ),
-                    child: const Text('Submit'),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-              ],
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your email',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your Password',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Enter your Password';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                      hintText: 'Conforme your password',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width - 40, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      child: const Text('Submit'),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          else
+            Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your email',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your password',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width - 40, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      child: const Text('Submit'),
+                    ),
+                  ),
+                ],
+              ),
             ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                showForm = !showForm;
+              });
+            },
+            child: showForm
+                ? Text("You already have an account?")
+                : Text("Don't have an account?"),
           ),
-          SizedBox(height: 20),
           Divider(),
-          SizedBox(height: 30),
           ButtonBar(
             alignment: MainAxisAlignment.start,
             buttonMinWidth: 400,
             children: [
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () async {
+
+                  AuthService authService = AuthService( userProvider); // Replace userProvider with the actual instance of UserProvider
+                    await authService.signInWithGoogle(context);
+
+                  if (userProvider.user != null) {
+                    // Navigate back 2 or 3 contexts
+                    var count = 0;
+                    Navigator.popUntil(context, (route) {
+                      return count++ == 1;
+                    });
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width - 40, 40),
                   shape: RoundedRectangleBorder(

@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Models/Cinema.dart';
+import 'package:poppinroadcimema/Models/Movie.dart';
+import 'package:poppinroadcimema/Models/MovieActor.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/Category_list.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/genres.dart';
 import 'package:poppinroadcimema/Screens/HomeCinema/Home_page/movie_carousel.dart';
 
-class Movie_interface extends StatefulWidget {
-  const Movie_interface({super.key});
+class MovieInterface extends StatefulWidget {
+  final Cinema selectedCinema;
+
+  const MovieInterface({super.key, required this.selectedCinema});
 
   @override
-  State<Movie_interface> createState() => _Movie_interfaceState();
+  State<MovieInterface> createState() => _MovieInterfaceState();
 }
 
-class _Movie_interfaceState extends State<Movie_interface> {
+class _MovieInterfaceState extends State<MovieInterface> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      
-     child: 
-     Container(
-       height: MediaQuery.of(context).size.height - 65,
-       child:  Column(
-       children: [
-      CategoryList(),
-      Genre(),
-      MovieCaroussel(),
-      
+    final cinemaTitle = widget.selectedCinema.title ?? 'Unknown Cinema';
+    // print('Selected Cinema Data: ${widget.selectedCinema.movies}');
+    final List<Movie> listMovies = widget.selectedCinema.movies ?? [];
+    //print('Data...333: ${movies[0]}');
+
+    return Scaffold(
+      appBar: AppBar(title: Text(cinemaTitle)),
+      body: Column(
+        children: [
+          CategoryList(title: cinemaTitle),
+          Genre(),
+          MovieCaroussel(listMovies: listMovies),
         ],
-     )
-    
       ),
     );
   }

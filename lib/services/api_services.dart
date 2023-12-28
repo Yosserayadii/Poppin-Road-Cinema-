@@ -35,7 +35,6 @@ static Future<String> sendMessage({required String message, required String mode
         },
       ),
     );
-
     Map jsonResponse = jsonDecode(response.body);
 
     if (jsonResponse["choices"].isNotEmpty) {

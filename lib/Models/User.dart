@@ -3,7 +3,7 @@ import 'package:poppinroadcimema/Models/Resvation.dart';
 
 class User {
   final int id, score;
-  final String barthday, email, image;
+  final String barthday, email, password ,image;
   final List<String> Resvations ;
 
   User({
@@ -11,6 +11,7 @@ class User {
     required this.score,
     required this.barthday,
     required this.email,
+    required this.password,
     required this.image,
     required this.Resvations,
   });
@@ -20,6 +21,8 @@ class User {
 User user = User(
   id: 1,
   score: 30,
+
+  password: "",
   barthday: "28/01/2000",
   email: "grindi.maha@gmail.com",
   image: "assets/onward.jpeg",

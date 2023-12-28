@@ -1,25 +1,53 @@
-// Our movie model
+import 'package:poppinroadcimema/Models/MovieActor.dart';
+import 'package:poppinroadcimema/Models/Seance.dart';
+
 class Movie {
-  final int id, year, numOfRatings, criticsReview, metascoreRating;
-  final double rating;
-  final List<String> genre;
-  final String title, poster, backdrop, plot;
-  final List<Map<String, dynamic>> cast;
+  final String? backdrop;
+  final List<MovieActor>? cast;
+  final List<Seance>? seance;
+  final int? criticsReview;
+  final List<String>? genre;
+  final int? id;
+  final int? metascoreRating;
+  final int? numOfRatings;
+  final String? plot;
+  final String? poster;
+  final double? rating;
+  final String? title;
+  final int? year;
 
   Movie({
-    required this.poster,
     required this.backdrop,
-    required this.title,
-    required this.id,
-    required this.plot,
-    required this.year,
-    required this.numOfRatings,
-    required this.criticsReview,
-    required this.metascoreRating,
-    required this.rating,
-    required this.genre,
     required this.cast,
+    required this.criticsReview,
+    required this.genre,
+    required this.id,
+    required this.metascoreRating,
+    required this.numOfRatings,
+    required this.plot,
+    required this.poster,
+    required this.rating,
+    required this.seance,
+    required this.title,
+    required this.year,
   });
+  @override
+  String toString() {
+    return 'Movie{'
+        'backdrop: $backdrop, '
+        'cast: $cast, '
+        'criticsReview: $criticsReview, '
+        'genre: $genre, '
+        'seance: $seance'
+        'id: $id, '
+        'metascoreRating: $metascoreRating, '
+        'numOfRatings: $numOfRatings, '
+        'plot: $plot, '
+        'poster: $poster, '
+        'rating: $rating, '
+        'title: $title, '
+        'year: $year}';
+  }
 }
 
 // Our demo movie data
@@ -37,28 +65,8 @@ List<Movie> movies = [
         "In Ford V Ferrari Ford Motor Company hires automotive designer Carroll Shelby and talented but challenging driver Ken Miles to build a race car capable of beating Ferrari at the 24 Hours of Le Mans in 1966. The film follows their struggles to create a competitive car, dealing with internal politics, and their journey to the ultimate showdown against Ferrari at Le Mans. The movie is a high-stakes, thrilling racing drama based on a true story.",
     metascoreRating: 76,
     genre: ["Action", "Drama"],
-    cast: [
-      {
-        "originalName": "James Mangold",
-        "movieName": "Director",
-        "image": "assets/actor_1.png",
-      },
-      {
-        "originalName": "Mattew Damon",
-        "movieName": "Carroll",
-        "image": "assets/actor_2.png",
-      },
-      {
-        "originalName": "Christian Bale",
-        "movieName": "Ken Miles",
-        "image": "assets/actor_3.png",
-      },
-      {
-        "originalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "assets/actor_4.png",
-      },
-    ],
+    cast: [],
+    seance: [],
   ),
   Movie(
     id: 2,
@@ -73,28 +81,8 @@ List<Movie> movies = [
     criticsReview: 50,
     metascoreRating: 76,
     genre: ["Action", "Biography", "Drama"],
-    cast: [
-      {
-        "originalName": "James Mangold",
-        "movieName": "Director",
-        "image": "assets/actor_1.png",
-      },
-      {
-        "originalName": "Mattew Damon",
-        "movieName": "Carroll",
-        "image": "assets/actor_2.png",
-      },
-      {
-        "originalName": "Christian Bale",
-        "movieName": "Ken Miles",
-        "image": "assets/actor_3.png",
-      },
-      {
-        "originalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "assets/actor_4.png",
-      },
-    ],
+    cast: [],
+    seance: [],
   ),
   Movie(
     id: 3, // Changed ID to 3
@@ -109,28 +97,7 @@ List<Movie> movies = [
     criticsReview: 50,
     metascoreRating: 79,
     genre: ["Action", "Drama"],
-    cast: [
-      {
-        "originalName": "James Mangold",
-        "movieName": "Director",
-        "image": "assets/actor_1.png",
-      },
-      {
-        "originalName": "Mattew Damon",
-        "movieName": "Carroll",
-        "image": "assets/actor_2.png",
-      },
-      {
-        "originalName": "Christian Bale",
-        "movieName": "Ken Miles",
-        "image": "assets/actor_3.png",
-      },
-      {
-        "originalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "assets/actor_4.png",
-      },
-    ],
+    cast: [], seance: [],
   ),
   Movie(
     id: 3, // Changed ID to 3
@@ -145,27 +112,6 @@ List<Movie> movies = [
     criticsReview: 50,
     metascoreRating: 79,
     genre: ["Action", "Drama"],
-    cast: [
-      {
-        "originalName": "James Mangold",
-        "movieName": "Director",
-        "image": "assets/actor_1.png",
-      },
-      {
-        "originalName": "Mattew Damon",
-        "movieName": "Carroll",
-        "image": "assets/actor_2.png",
-      },
-      {
-        "originalName": "Christian Bale",
-        "movieName": "Ken Miles",
-        "image": "assets/actor_3.png",
-      },
-      {
-        "originalName": "Caitriona Balfe",
-        "movieName": "Mollie",
-        "image": "assets/actor_4.png",
-      },
-    ],
+    cast: [], seance: [],
   ),
 ];

@@ -1,12 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/ticket/ticketBack.dart';
-import 'package:poppinroadcimema/Screens/ticket/ticketFront.dart'; 
+import 'package:poppinroadcimema/Screens/ticket/ticketFront.dart';
 
 class MovingCardWidget extends StatefulWidget {
-
-  const MovingCardWidget({super.key, 
+  final Movie movie;
+  const MovingCardWidget({
+    super.key,
+    required this.movie,
   });
 
   @override
@@ -29,33 +32,17 @@ class _MovingCardWidgetState extends State<MovingCardWidget>
       vsync: this,
     );
 
-    // Add a call to setImageSide() to start rotating the card immediately
-    setImageSide();
+    // Initialize the animation with the correct initial value
+    animation = Tween<double>(begin: 0, end: 360).animate(controller)
+      ..addListener(() {
+        setState(() {
+          horizontalDrag = animation.value;
+          setImageSide(); // Call the function again to continue rotating
+        });
+      });
 
-    // Add a Future.delayed call to delay the rotation until after the widget has been built
-    Future.delayed(const Duration(milliseconds: 500)).then((_) async {
-      for (int i = 0; i < 3; i++) {
-        // Change the loop condition to iterate three times
-        if (isFront) {
-          horizontalDrag = 0;
-        } else {
-          horizontalDrag = 180;
-        }
-
-        animation =
-            Tween<double>(begin: horizontalDrag, end: 360).animate(controller)
-              ..addListener(() {
-                setState(() {
-                  horizontalDrag = animation.value;
-                  setImageSide(); // Call the function again to continue rotating
-                });
-              });
-        controller.forward();
-
-        await Future.delayed(const Duration(
-            seconds: 1)); // Wait for one second before rotating again
-      }
-    });
+    // Start the animation immediately
+    controller.forward();
   }
 
   @override
@@ -77,7 +64,8 @@ class _MovingCardWidgetState extends State<MovingCardWidget>
           });
         },
         onHorizontalDragEnd: (details) {
-          final double end = 360 - horizontalDrag >= 180 ? 0 : 360;
+          final double end =
+              (360 - horizontalDrag >= 180) ? 0 : 360; // Adjust the condition
 
           animation =
               Tween<double>(begin: horizontalDrag, end: end).animate(controller)
@@ -95,7 +83,7 @@ class _MovingCardWidgetState extends State<MovingCardWidget>
             ..rotateY(horizontalDrag / 180 * pi),
           alignment: Alignment.center,
           child: isFront
-              ? TicketFront()
+              ? TicketFront(movie: widget.movie)
               : Transform(
                   transform: Matrix4.identity()..rotateY(pi),
                   alignment: Alignment.center,

@@ -4,8 +4,11 @@ import 'package:lottie/lottie.dart';
 import 'package:poppinroadcimema/Authentification/signin.dart';
 import 'package:poppinroadcimema/Authentification/welcome.dart';
 import 'package:poppinroadcimema/Models/Movie.dart';
+import 'package:poppinroadcimema/providers/UserProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
+import 'package:provider/provider.dart';
 
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
 class BackdropAndRating extends StatefulWidget {
   const BackdropAndRating({
@@ -23,9 +26,11 @@ class BackdropAndRating extends StatefulWidget {
 
 class _BackdropAndRatingState extends State<BackdropAndRating> {
   int selectedRating = 0;
-
+  double value = 3.5;
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return Container(
       height: 300,
       child: Stack(
@@ -36,7 +41,8 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(widget.movie.backdrop),
+                image:
+                    NetworkImage(widget.movie.backdrop ?? 'default_image.jpeg'),
               ),
             ),
           ),
@@ -101,7 +107,11 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          _showRatingPopUp(context);
+                          if (userProvider.user == null) {
+                            _showRatingPopUpToLogin(context);
+                          } else {
+                            _showRatingPopUp(context);
+                          }
                         },
                         child: Lottie.asset(
                           'assets/animated_star.json',
@@ -165,8 +175,72 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
     );
   }
 
+  void _showRatingPopUp(BuildContext context,
+      {double ratingStarsSize = 30.0,
+      double dialogWidth = 300.0,
+      double dialogHeight = 50.0}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        double value = 1 ;
+
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Text("Thank you For Rating this Film"),
+              content: Container(
+                width: dialogWidth,
+                height: dialogHeight,
+                child:  Center(
+          child: RatingStars(
+            value: value,
+            onValueChanged: (v) {
+              //
+              setState(() {
+                value = v;
+              });
+            },
+            
+            starCount: 5,
+            starSize: 30,
+            valueLabelColor: const Color(0xff9b9b9b),
+            valueLabelTextStyle: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.normal,
+                fontSize: 12.0),
+            valueLabelRadius: 10,
+            maxValue: 5,
+            starSpacing: 5,
+            maxValueVisibility: true,
+            valueLabelVisibility: false,
+            animationDuration: Duration(milliseconds: 1000),
+            valueLabelPadding:
+                const EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+            valueLabelMargin: const EdgeInsets.only(right: 8),
+            starOffColor: const Color(0xffe7e8ea),
+            starColor: Colors.yellow,
+          ),
+        ),
+
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  child: Text("Cancel"),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
 }
-void _showRatingPopUp(BuildContext context) {
+
+void _showRatingPopUpToLogin(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -194,4 +268,3 @@ void _showRatingPopUp(BuildContext context) {
     },
   );
 }
-

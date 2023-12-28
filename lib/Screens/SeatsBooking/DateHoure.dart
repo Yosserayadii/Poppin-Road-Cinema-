@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:poppinroadcimema/Models/DateAndTime.dart';
+import 'package:poppinroadcimema/Models/Movie.dart';
 import 'package:poppinroadcimema/Screens/ticket/ticket.dart';
-import 'package:poppinroadcimema/provider/PriceProvider.dart';
+import 'package:poppinroadcimema/providers/PriceProvider.dart';
 import 'package:poppinroadcimema/reusable_widgets/Custom_button.dart';
 import 'dart:math' as math;
 
@@ -9,7 +10,8 @@ import 'package:poppinroadcimema/reusable_widgets/Custom_colors.dart';
 import 'package:provider/provider.dart';
 
 class DateHourWidget extends StatefulWidget {
-  const DateHourWidget({Key? key});
+  final Movie movie;
+  const DateHourWidget({Key? key, required this.movie});
 
   @override
   State<DateHourWidget> createState() => _DateHourWidgetState();
@@ -36,6 +38,7 @@ class _DateHourWidgetState extends State<DateHourWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final movie = widget.movie;
     double totalPrice = Provider.of<PriceProvider>(context).totalPrice;
 
     return Container(
@@ -216,20 +219,18 @@ class _DateHourWidgetState extends State<DateHourWidget> {
                       height: 3,
                     ),
                     Text(
-                      "$totalPrice \$",
+                      "$totalPrice DT",
                       style: TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
                 ElevatedButton(
                   onPressed: () {
-
-
-                      Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Ticket() ),
-                            );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Ticket(movie: movie)),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: CustomColors.fifthColor,
